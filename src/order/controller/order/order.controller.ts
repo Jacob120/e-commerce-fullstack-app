@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Request, UseGuards } from '@nestjs/common';
-import { LocalAuthGuard } from 'src/auth/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { OrderEntity } from 'src/order/order.entity';
 import { OrderService } from 'src/order/service/order/order.service';
 

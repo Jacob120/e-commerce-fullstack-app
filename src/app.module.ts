@@ -14,6 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CartService } from './cart/service/cart/cart.service';
 import * as dotenv from 'dotenv';
 import { ProductsService } from './product/service/product/product.service';
+
 import * as cors from 'cors';
 // Load env file
 dotenv.config();

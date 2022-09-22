@@ -1,8 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from 'src/auth/user.entity';
+
 import { ProductEntity } from 'src/product/product.entity';
+import { Users } from 'src/auth/user.entity';
 
 @Injectable()
 export class ProductsService {
@@ -18,8 +19,7 @@ export class ProductsService {
   async create(product: ProductEntity, user: Users): Promise<ProductEntity> {
     if (user.role == 'admin') {
       return await this.productRepository.save(product);
-    }
-    throw new UnauthorizedException();
+    } else throw new UnauthorizedException();
   }
 
   async getOne(id: number): Promise<ProductEntity> {

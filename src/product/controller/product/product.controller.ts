@@ -10,10 +10,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UpdateResult, DeleteResult } from 'typeorm';
-
-import { LocalAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ProductEntity } from 'src/product/product.entity';
 import { ProductsService } from 'src/product/service/product/product.service';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 
 @Controller('api/products')
 export class ProductsController {

@@ -1,0 +1,9 @@
+@import '../../../styles/settings.scss';
+@import '../../../styles/global.scss';
+
+.root {
+  font-size: $base-size * 1.2;
+  text-transform: uppercase;
+  color: $main-color;
+  background-color: $bg-white;
+}

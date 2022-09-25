@@ -12,7 +12,7 @@ import {
 import { UpdateResult, DeleteResult } from 'typeorm';
 import { ProductEntity } from 'src/product/product.entity';
 import { ProductsService } from 'src/product/service/product/product.service';
-import { LocalAuthGuard } from 'src/auth/local-auth.guard';
+import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 
 @Controller('api/products')
 export class ProductsController {

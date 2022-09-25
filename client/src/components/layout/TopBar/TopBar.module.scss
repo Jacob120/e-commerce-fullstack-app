@@ -4,12 +4,4 @@
   border-bottom: 1px solid rgba(7, 7, 7, 0.1);
   text-transform: uppercase;
   font-size: $base-size * 1.1;
-  text-decoration: none;
-  a:link {
-  }
-
-  &.login {
-    display: flex;
-    flex-direction: row;
-  }
 }

@@ -6,8 +6,8 @@ import {
   Body,
   Get,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { LocalAuthGuard } from 'src/auth/local-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 import { AuthService } from 'src/auth/service/auth.service';
 import { Users } from 'src/auth/user.entity';
 

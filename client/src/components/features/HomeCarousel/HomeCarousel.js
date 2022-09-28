@@ -25,7 +25,6 @@ const HomeCarousel = () => {
           src="./images/carousel/carousel-slide-2.jpg"
           alt="Second slide"
           height={'500px'}
-          objectFit={'cover'}
         />
 
         <Carousel.Caption>

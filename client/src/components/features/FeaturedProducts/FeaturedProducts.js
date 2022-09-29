@@ -7,11 +7,17 @@ import Container from 'react-bootstrap/Container';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../../redux/productsRedux';
+import {
+  getAllProducts,
+  getMenProducts,
+  getWomenProducts,
+} from '../../../redux/productsRedux';
 
 const FeaturedProducts = () => {
-  const products = useSelector(getAllProducts);
-  console.log(products);
+  const allProducts = useSelector(getAllProducts);
+  const menProducts = useSelector(getMenProducts);
+  const womenProducts = useSelector(getWomenProducts);
+  console.log(menProducts);
   return (
     <div className={styles.products_root}>
       <Container>
@@ -24,17 +30,33 @@ const FeaturedProducts = () => {
             variant="tabs"
             bg="light"
           >
-            <Tab eventKey="all" title="ALL" tabClassName={styles.tab}>
-              <Row xs={1} md={4} className="g-3 ">
-                {products.map((product) => (
+            <Tab eventKey="all" title="ALL">
+              <Row className="g-3 ">
+                {allProducts.map((product) => (
+                  <Col xs={12} md={6} lg={3} key={product.id}>
+                    <ProductBox {...product} />
+                  </Col>
+                ))}
+              </Row>
+            </Tab>
+            <Tab eventKey="women" title="WOMEN'S">
+              <Row xs={1} md={2} lg={4} className="g-3 ">
+                {womenProducts.map((product) => (
                   <Col key={product.id}>
                     <ProductBox {...product} />
                   </Col>
                 ))}
               </Row>
             </Tab>
-            <Tab eventKey="women" title="WOMEN'S"></Tab>
-            <Tab eventKey="men" title="MEN'S"></Tab>
+            <Tab eventKey="men" title="MEN'S">
+              <Row xs={1} md={2} lg={4} className="g-3 ">
+                {menProducts.map((product) => (
+                  <Col key={product.id}>
+                    <ProductBox {...product} />
+                  </Col>
+                ))}
+              </Row>
+            </Tab>
           </Tabs>
         </Row>
       </Container>

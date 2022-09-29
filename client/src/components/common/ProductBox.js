@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { BsCartPlus, BsStarFill, BsStar } from 'react-icons/bs';
 import { BiGlassesAlt } from 'react-icons/bi';
+
 const ProductBox = ({
   id,
   gender,
@@ -14,38 +15,64 @@ const ProductBox = ({
   price,
   image,
   starsRating,
+  onSale,
+  oldPrice,
+  topSale,
+  outOfStock,
 }) => {
   const activeStars = starsRating;
 
   return (
-    <Card style={{ width: '20rem' }} className={styles.card_wrapper}>
+    <Card style={{ height: '100%' }} className={styles.card_wrapper}>
       <Card.Img variant="top" src={image} />
       <Card.Body>
+        <Row>
+          <Col className={'mb-3 ' + styles.label}>
+            {onSale && (
+              <span className={'mx-1 ' + styles.label_sale}>Sale</span>
+            )}
+            {topSale && <span className={'mx-1 ' + styles.label_top}>Top</span>}
+            {outOfStock && (
+              <span className={'mx-1 ' + styles.label_out}>Out of Stock</span>
+            )}
+          </Col>
+        </Row>
         <p className={styles.categories_text}>
           {category}, {gender}
         </p>
         <Card.Title>{name}</Card.Title>
-        <Card.Text className="m-0">{price}</Card.Text>
-        <Row className="justify-content-center text-center py-3">
+        <Card.Text className="m-0">
+          {oldPrice ? (
+            <p>
+              <span className={styles.new_price}>Now {price}</span>{' '}
+              <span className={styles.old_price}>Was {oldPrice}</span>
+            </p>
+          ) : (
+            <p>{price}</p>
+          )}
+        </Card.Text>
+        <Row className="justify-content-center text-center pb-3">
           <Col xs={12}>
             {[...Array(5)].map((star, index) =>
               index < activeStars ? (
                 <BsStarFill key={index} className={styles.stars_fill} />
               ) : (
-                <BsStarFill className={styles.stars} />
+                <BsStarFill key={index} className={styles.stars} />
               ),
             )}
             <p className={styles.categories_text}>(2 reviews)</p>
           </Col>
         </Row>
 
-        <Button variant="outline-secondary" size="sm" className="mx-1">
-          <BsCartPlus className="mx-1" />
-          ADD TO CART
-        </Button>
-        <Button variant="outline-secondary" size="sm" className="mx-1">
-          <BiGlassesAlt className="mx-1" />
-          QUICK VIEW
+        {!outOfStock && (
+          <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
+            <BsCartPlus className="mx-1 " />
+            ADD TO CART
+          </Button>
+        )}
+        <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
+          <BiGlassesAlt className="mx-1 " />
+          VIEW DETAILS
         </Button>
       </Card.Body>
     </Card>

@@ -41,6 +41,7 @@ body {
 
 .btn {
   border-radius: 0;
+  transition: $transition;
 }
 
 .btn-outline-secondary {

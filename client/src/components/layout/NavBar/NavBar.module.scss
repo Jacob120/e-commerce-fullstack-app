@@ -7,4 +7,8 @@
   color: $main-color;
   background-color: $bg-white;
   margin: 24px 0 24px 0;
+
+  .search_input {
+    border-radius: 0;
+  }
 }

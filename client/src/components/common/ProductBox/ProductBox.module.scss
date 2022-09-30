@@ -2,46 +2,52 @@
 
 .card_wrapper {
   border: none;
-}
 
-.categories_text {
-  font-size: 13px;
-  opacity: 0.7;
-  margin: 0;
-}
-
-.stars_fill {
-  color: $stars-color;
-}
-
-.stars {
-  color: rgb(143, 143, 143);
-}
-
-.label {
-  font-size: $base-size;
-  color: $text-color-white;
-  &_sale {
-    padding: 5px;
-    background-color: $label-sale;
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
-  &_top {
-    padding: 5px;
-    background-color: $label-top;
-  }
-  &_out {
-    padding: 5px;
-    background-color: $label-out;
-  }
-}
 
-.new_price {
-  color: $price-color-new;
-  font-weight: bold;
-  padding-right: 8px;
-}
+  .categories_text {
+    font-size: 13px;
+    opacity: 0.7;
+    margin: 0;
+  }
 
-.old_price {
-  color: $price-color-old;
-  text-decoration: line-through;
+  .stars_fill {
+    color: $stars-color;
+  }
+
+  .stars {
+    color: rgb(143, 143, 143);
+  }
+
+  .label {
+    font-size: $base-size;
+    color: $text-color-white;
+    &_sale {
+      padding: 5px;
+      background-color: $label-sale;
+    }
+    &_top {
+      padding: 5px;
+      background-color: $label-top;
+    }
+    &_out {
+      padding: 5px;
+      background-color: $label-out;
+    }
+  }
+
+  .new_price {
+    color: $price-color-new;
+    font-weight: bold;
+    padding-right: 8px;
+  }
+
+  .old_price {
+    color: $price-color-old;
+    text-decoration: line-through;
+  }
 }

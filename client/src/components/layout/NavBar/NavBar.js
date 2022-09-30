@@ -48,8 +48,8 @@ const NavBar = () => {
                 <Form.Control
                   type="search"
                   placeholder="Search"
-                  className="me-2"
                   aria-label="Search"
+                  className={'me-2 ' + styles.search_input}
                 />
                 <Button variant="outline-secondary">
                   <BsSearch />

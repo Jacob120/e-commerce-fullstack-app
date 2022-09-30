@@ -9,7 +9,13 @@ const initialState = {
       onSale: true,
       oldPrice: '$55',
       outOfStock: false,
-      image: '/images/products/boots-1.jpg',
+      image: '/images/products/men-boots.1.1.png',
+      gallery: [
+        '/images/products/men-boots.1.1.png',
+        '/images/products/men-boots.1.2.png',
+        '/images/products/men-boots.1.3.png',
+        '/images/products/men-boots.1.4.png',
+      ],
       starsRating: 4,
     },
     {
@@ -21,7 +27,7 @@ const initialState = {
       onSale: false,
       topSale: true,
       outOfStock: false,
-      image: '/images/products/boots-1.jpg',
+      image: '/images/products/men-boots.2.1.png',
       starsRating: 4,
     },
     {
@@ -33,7 +39,7 @@ const initialState = {
       onSale: false,
       topSale: false,
       outOfStock: true,
-      image: '/images/products/boots-1.jpg',
+      image: '/images/products/men-boots.3.1.jpg',
       starsRating: 5,
     },
     {
@@ -90,7 +96,7 @@ const initialState = {
       onSale: true,
       topSale: false,
       outOfStock: false,
-      image: '/images/products/boots-1.jpg',
+      image: '/images/products/men-boots.1.1.png',
     },
     {
       id: '9',
@@ -100,7 +106,7 @@ const initialState = {
       price: '$35',
       onSale: false,
       outOfStock: false,
-      image: '/images/products/boots-1.jpg',
+      image: '/images/products/women-boots.1.1.jpg',
       starsRating: 4,
     },
     {

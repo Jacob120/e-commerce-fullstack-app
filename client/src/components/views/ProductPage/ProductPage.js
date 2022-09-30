@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProductPage.module.scss';
 import StarsRating from '../../common/StarsRating/StarsRating';
 import { useParams } from 'react-router-dom';
@@ -18,21 +18,42 @@ import {
 
 const ProductPage = () => {
   const { productId } = useParams();
-
   const productData = useSelector((state) => getProductById(state, productId));
 
-  console.log(productData);
+  const [activePhoto, setActivePhoto] = useState(productData.image);
+
   return (
     <Container>
       <Row className={styles.root}>
-        <Col>
+        <Col xs={4} md={4} lg={2} className="flex-column">
+          {productData.gallery &&
+            productData.gallery.map((item) => (
+              <div className={styles.gallery} key={item}>
+                <button
+                  className={
+                    item === activePhoto
+                      ? styles.gallery_active
+                      : styles.gallery_button
+                  }
+                  onClick={() => setActivePhoto(item)}
+                >
+                  <img
+                    src={item}
+                    className={styles.gallery_thumbnail}
+                    alt="shoes"
+                  />
+                </button>
+              </div>
+            ))}
+        </Col>
+        <Col xs={8} md={8} lg={4}>
           <img
-            src={productData.image}
+            src={activePhoto}
             alt="boots"
             className={'d-block ' + styles.left_image}
           />
         </Col>
-        <Col className={styles.right_details}>
+        <Col xs={12} md={12} lg={6} className={styles.right_details}>
           <h2>{productData.name}</h2>
           <StarsRating stars={productData.starsRating} />
           <h4>

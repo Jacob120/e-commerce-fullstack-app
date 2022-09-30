@@ -23,7 +23,7 @@ const ProductBox = ({
 }) => {
   return (
     <Card style={{ height: '100%' }} className={styles.card_wrapper}>
-      <Card.Img variant="top" src={image} />
+      <Card.Img variant="top" src={image} className={styles.image} />
       <Card.Body>
         <Row>
           <Col className={'mb-3 ' + styles.label}>

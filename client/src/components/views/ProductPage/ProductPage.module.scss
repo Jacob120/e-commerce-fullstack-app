@@ -1,0 +1,37 @@
+@import '../../../styles/settings.scss';
+
+.right_details {
+  border-left: 1px solid rgba(7, 7, 7, 0.1);
+
+  .product_description {
+    font-size: 14px;
+  }
+
+  .label {
+    font-size: $base-size;
+    color: $text-color-white;
+    &_sale {
+      padding: 5px;
+      background-color: $label-sale;
+    }
+    &_top {
+      padding: 5px;
+      background-color: $label-top;
+    }
+    &_out {
+      padding: 5px;
+      background-color: $label-out;
+    }
+  }
+
+  .new_price {
+    color: $price-color-new;
+    font-weight: bold;
+    padding-right: 8px;
+  }
+
+  .old_price {
+    color: $price-color-old;
+    text-decoration: line-through;
+  }
+}

@@ -13,10 +13,10 @@ import { BsCart, BsSearch } from 'react-icons/bs';
 const NavBar = () => {
   return (
     <Navbar expand="lg" sticky="top" className={styles.root}>
-      <Container fluid>
-        <Navbar.Brand href="#home">
+      <Container>
+        <Navbar.Brand href="/">
           <img
-            src="./images/logo2.jpg"
+            src="/images/logo2.jpg"
             alt="logo"
             className="img-fluid"
             width={'120px'}

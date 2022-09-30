@@ -1,12 +1,15 @@
 /* selectors */
 export const getAllProducts = ({ products }) => products;
+
 export const getMenProducts = ({ products }) =>
   products.filter((product) => product.gender === 'Men');
+
 export const getWomenProducts = ({ products }) =>
   products.filter((product) => product.gender === 'Women');
 
 export const getProductById = ({ products }, productId) =>
   products.find((product) => product.id === productId);
+
 export const getOnSale = ({ products }) =>
   products.filter((product) => product.onSale === true);
 

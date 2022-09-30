@@ -1,11 +1,12 @@
 import styles from './ProductBox.module.scss';
+import { Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { BsCartPlus, BsStarFill, BsStar } from 'react-icons/bs';
+import { BsCartPlus } from 'react-icons/bs';
 import { BiGlassesAlt } from 'react-icons/bi';
+import StarsRating from '../StarsRating/StarsRating';
 
 const ProductBox = ({
   id,
@@ -20,8 +21,6 @@ const ProductBox = ({
   topSale,
   outOfStock,
 }) => {
-  const activeStars = starsRating;
-
   return (
     <Card style={{ height: '100%' }} className={styles.card_wrapper}>
       <Card.Img variant="top" src={image} />
@@ -43,26 +42,17 @@ const ProductBox = ({
         <Card.Title>{name}</Card.Title>
         <Card.Text className="m-0">
           {oldPrice ? (
-            <p>
+            <span>
               <span className={styles.new_price}>Now {price}</span>{' '}
               <span className={styles.old_price}>Was {oldPrice}</span>
-            </p>
+            </span>
           ) : (
-            <p>{price}</p>
+            <span>{price}</span>
           )}
         </Card.Text>
-        <Row className="justify-content-center text-center pb-3">
-          <Col xs={12}>
-            {[...Array(5)].map((star, index) =>
-              index < activeStars ? (
-                <BsStarFill key={index} className={styles.stars_fill} />
-              ) : (
-                <BsStarFill key={index} className={styles.stars} />
-              ),
-            )}
-            <p className={styles.categories_text}>(2 reviews)</p>
-          </Col>
-        </Row>
+        <div className="d-flex justify-content-center">
+          <StarsRating stars={starsRating} />
+        </div>
 
         {!outOfStock && (
           <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
@@ -70,10 +60,12 @@ const ProductBox = ({
             ADD TO CART
           </Button>
         )}
-        <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
-          <BiGlassesAlt className="mx-1 " />
-          VIEW DETAILS
-        </Button>
+        <Link to={'/product/' + id}>
+          <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
+            <BiGlassesAlt className="mx-1 " />
+            VIEW DETAILS
+          </Button>
+        </Link>
       </Card.Body>
     </Card>
   );

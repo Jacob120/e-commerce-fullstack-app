@@ -11,8 +11,6 @@ const Home = () => {
   return (
     <div>
       <Container>
-        <TopBar />
-        <NavBar />
         <HomeCarousel />
         <BannerGroup />
         <FeatureBoxes />

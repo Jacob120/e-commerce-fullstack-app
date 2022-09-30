@@ -36,3 +36,18 @@ body {
   color: gray;
   border: none;
 }
+
+// Override buttons styling
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-outline-secondary {
+  color: $main-color;
+  border-color: $main-color;
+
+  &:hover {
+    background-color: $main-color !important;
+  }
+}

@@ -1,14 +1,16 @@
+import initialState from './initialState';
+
 /* selectors */
-export const getAllProducts = ({ products }) => products;
+export const getAllProducts = ({ products }) => products.products;
 
 export const getMenProducts = ({ products }) =>
-  products.filter((product) => product.gender === 'Men');
+  products.products.filter((product) => product.type === 'Men');
 
 export const getWomenProducts = ({ products }) =>
-  products.filter((product) => product.gender === 'Women');
+  products.products.filter((product) => product.type === 'Women');
 
 export const getProductById = ({ products }, productId) =>
-  products.find((product) => product.id === productId);
+  products.products.find((product) => product.id === productId);
 
 export const getOnSale = ({ products }) =>
   products.filter((product) => product.onSale === true);
@@ -25,7 +27,7 @@ export const updateRating = (payload) => ({
 });
 
 /* reducer */
-function productsReducer(statePart = [], action = {}) {
+function productsReducer(statePart = initialState, action = {}) {
   switch (action.type) {
     default:
       return statePart;

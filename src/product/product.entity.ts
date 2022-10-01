@@ -18,10 +18,28 @@ export class ProductEntity {
   name: string;
 
   @Column()
+  type: string;
+
+  @Column()
+  category: string;
+
+  @Column()
   price: number;
 
   @Column()
-  quantity: string;
+  onSale: boolean;
+
+  @Column()
+  oldPrice: string;
+
+  @Column()
+  outOfStock: boolean;
+
+  @Column()
+  image: string;
+
+  @Column({ type: 'simple-array' })
+  gallery: string[];
 
   @CreateDateColumn()
   createdAt: string;

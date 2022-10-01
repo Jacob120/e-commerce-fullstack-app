@@ -8,13 +8,19 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
 } from 'typeorm';
-import { CartEntity } from 'src/cart/cart.entity';
-import { OrderEntity } from 'src/order/order.entity';
+import { CartEntity } from '../cart/cart.entity';
+import { OrderEntity } from '../order/order.entity';
 
 @Entity()
 export class Users {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
 
   @Column()
   username: string;

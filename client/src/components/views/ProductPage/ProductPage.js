@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
 import {
   BsCartPlus,
   BsFacebook,
@@ -24,6 +26,10 @@ const ProductPage = () => {
 
   return (
     <Container>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item active>Product</Breadcrumb.Item>
+      </Breadcrumb>
       <Row className={styles.root}>
         <Col xs={4} md={4} lg={2} className="flex-column">
           {productData.gallery &&
@@ -89,7 +95,7 @@ const ProductPage = () => {
           </Button>
           <div className={'mt-3 ' + styles.details_footer}>
             <p className="mt-3">
-              Category: {productData.category}, {productData.gender}{' '}
+              Category: {productData.category}, {productData.type}{' '}
             </p>
             <div className="d-flex align-items-center text-center">
               <p className="m-0">Share: </p>

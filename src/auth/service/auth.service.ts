@@ -1,10 +1,9 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
+import { Users } from '../user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { Users } from '../user.entity';
 
 @Injectable()
 export class AuthService {
@@ -14,18 +13,18 @@ export class AuthService {
   ) {}
 
   async signup(user: Users): Promise<Users> {
-    console.log(user.password);
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(user.password, salt);
     user.password = hash;
+    user.firstName = user.firstName;
+    user.lastName = user.lastName;
+    user.role = 'user';
     return await this.userRepository.save(user);
   }
 
   async validateUser(username: string, password: string): Promise<any> {
     const foundUser = await this.userRepository.findOne({
-      where: {
-        username: username,
-      },
+      where: { username },
     });
     if (foundUser) {
       if (await bcrypt.compare(password, foundUser.password)) {
@@ -42,6 +41,14 @@ export class AuthService {
 
     return {
       access_token: this.jwt.sign(payload),
+      role: user.role,
+      username: user.username,
     };
+  }
+
+  async findOne(username: string): Promise<Users | undefined> {
+    return await this.userRepository.findOne({
+      where: { username },
+    });
   }
 }

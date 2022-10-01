@@ -10,7 +10,7 @@ import StarsRating from '../StarsRating/StarsRating';
 
 const ProductBox = ({
   id,
-  gender,
+  type,
   name,
   category,
   price,
@@ -37,7 +37,7 @@ const ProductBox = ({
           </Col>
         </Row>
         <p className={styles.categories_text}>
-          {category}, {gender}
+          {category}, {type}
         </p>
         <Card.Title>{name}</Card.Title>
         <Card.Text className="m-0">

@@ -52,3 +52,7 @@ body {
     background-color: $main-color !important;
   }
 }
+
+.breadcrumb-item > a {
+  text-decoration: none;
+}

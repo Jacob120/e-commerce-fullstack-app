@@ -11,9 +11,8 @@ import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 import { OrderModule } from './order/order.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CartService } from './cart/service/cart/cart.service';
+
 import * as dotenv from 'dotenv';
-import { ProductsService } from './product/service/product/product.service';
 
 import * as cors from 'cors';
 // Load env file

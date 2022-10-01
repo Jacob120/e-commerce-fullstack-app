@@ -11,6 +11,11 @@
     &_button {
       background-color: white;
       border: none;
+      padding: 0;
+
+      &:hover {
+        border: 1px solid $main-color;
+      }
     }
 
     &_thumbnail {
@@ -21,8 +26,8 @@
 
     &_active {
       background-color: white;
-
       border: 1px solid $main-color;
+      transition: $transition;
     }
   }
 

@@ -2,7 +2,7 @@ const initialState = {
   products: [
     {
       id: '1',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -20,7 +20,7 @@ const initialState = {
     },
     {
       id: '2',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -32,7 +32,7 @@ const initialState = {
     },
     {
       id: '3',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -44,7 +44,7 @@ const initialState = {
     },
     {
       id: '4',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -56,7 +56,7 @@ const initialState = {
     },
     {
       id: '5',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -67,7 +67,7 @@ const initialState = {
     },
     {
       id: '6',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -78,7 +78,7 @@ const initialState = {
     },
     {
       id: '7',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -89,7 +89,7 @@ const initialState = {
     },
     {
       id: '8',
-      gender: 'Men',
+      type: 'Men',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -100,7 +100,7 @@ const initialState = {
     },
     {
       id: '9',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -111,7 +111,7 @@ const initialState = {
     },
     {
       id: '10',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -122,7 +122,7 @@ const initialState = {
     },
     {
       id: '11',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -132,7 +132,7 @@ const initialState = {
     },
     {
       id: '12',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -142,7 +142,7 @@ const initialState = {
     },
     {
       id: '13',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -152,7 +152,7 @@ const initialState = {
     },
     {
       id: '14',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -162,7 +162,7 @@ const initialState = {
     },
     {
       id: '15',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',
@@ -173,7 +173,7 @@ const initialState = {
     },
     {
       id: '16',
-      gender: 'Women',
+      type: 'Women',
       name: 'The North Face',
       category: 'Boots',
       price: '$35',

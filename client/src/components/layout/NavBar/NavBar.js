@@ -9,6 +9,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { BsCart, BsSearch } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -57,9 +58,11 @@ const NavBar = () => {
               </Form>
             </Col>
             <Col className="col-4">
-              <Button variant="outline-secondary">
-                <BsCart />
-              </Button>
+              <Link to="/cart">
+                <Button variant="outline-secondary">
+                  <BsCart />
+                </Button>
+              </Link>
             </Col>
           </Row>
         </Navbar.Collapse>

@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
   return (
-    <div>
+    <div className="pb-5">
       <h2 className={'text-center ' + styles.header}>Checkout</h2>
       <Container>
         <Breadcrumb>

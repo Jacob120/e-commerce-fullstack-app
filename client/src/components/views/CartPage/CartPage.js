@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   return (
-    <div>
+    <div className={'pb-5 ' + styles.root}>
       <h2 className={'text-center ' + styles.header}>Shopping Cart</h2>
       <Container>
         <Breadcrumb>

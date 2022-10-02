@@ -1,26 +1,30 @@
 @import '../../../styles/settings.scss';
 
-.header {
-  background-color: $bg-grey;
-  padding: 40px;
-}
+.root {
+  min-height: 800px;
 
-.image {
-  width: 150px;
-  height: 100px;
-  margin: 0;
-  object-fit: contain;
-}
-
-.right_box {
-  background-color: $bg-grey;
-  color: black;
-
-  .summary_title {
-    border-bottom: 1px solid rgba(7, 7, 7, 0.1);
+  .header {
+    background-color: $bg-grey;
+    padding: 40px;
   }
 
-  .shipping_form {
-    border-bottom: 1px solid rgba(7, 7, 7, 0.1);
+  .image {
+    width: 150px;
+    height: 100px;
+    margin: 0;
+    object-fit: contain;
+  }
+
+  .right_box {
+    background-color: $bg-grey;
+    color: black;
+
+    .summary_title {
+      border-bottom: 1px solid rgba(7, 7, 7, 0.1);
+    }
+
+    .shipping_form {
+      border-bottom: 1px solid rgba(7, 7, 7, 0.1);
+    }
   }
 }

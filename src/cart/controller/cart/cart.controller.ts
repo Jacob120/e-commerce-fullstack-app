@@ -15,20 +15,17 @@ import { CartService } from 'src/cart/service/cart/cart.service';
 export class CartController {
   constructor(private cartService: CartService) {}
 
-  @UseGuards(LocalAuthGuard)
+  // @UseGuards(LocalAuthGuard)
   @Post()
   async AddToCart(@Body() body, @Request() req): Promise<void> {
-    const { productId, quantity } = body;
-    return await this.cartService.addToCart(
-      productId,
-      quantity,
-      req.user.username,
-    );
+    const { productId, quantity, username } = body;
+    return await this.cartService.addToCart(productId, quantity, username);
   }
 
-  @UseGuards(LocalAuthGuard)
+  // @UseGuards(LocalAuthGuard)
   @Get()
-  async getItemsInCart(@Request() req): Promise<CartEntity[]> {
-    return await this.cartService.getItemsInCard(req.user.username);
+  async getItemsInCart(@Request() body, @Request() req): Promise<CartEntity[]> {
+    const { username } = body;
+    return await this.cartService.getItemsInCart(username);
   }
 }

@@ -14,24 +14,25 @@ export class CartService {
     private userRepository: Repository<Users>,
     private productsService: ProductsService,
   ) {}
+
   async addToCart(
-    productId: number,
+    productId: string,
     quantity: number,
-    user: string,
+    username: string,
   ): Promise<any> {
     const cartItems = await this.cartRepository.find({
       relations: ['item', 'user'],
     });
     const product = await this.productsService.getOne(productId);
     const authUser = await this.userRepository.findOne({
-      where: { username: user },
+      where: { username },
     });
 
     //Confirm the product exists.
     if (product) {
       //confirm if user has item in cart
       const cart = cartItems.filter(
-        (item) => item.item.id === productId && item.user.username === user,
+        (item) => item.item.id === product.id && item.user.id === authUser.id,
       );
       if (cart.length < 1) {
         const newItem = this.cartRepository.create({
@@ -57,10 +58,10 @@ export class CartService {
     return null;
   }
 
-  async getItemsInCard(user: string): Promise<CartEntity[]> {
+  async getItemsInCart(username: string): Promise<CartEntity[]> {
     const userCart = await this.cartRepository.find({
       relations: ['item', 'user'],
     });
-    return (await userCart).filter((item) => item.user.username === user);
+    return (await userCart).filter((item) => item.user.username === username);
   }
 }

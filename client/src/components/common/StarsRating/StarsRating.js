@@ -3,6 +3,7 @@ import styles from './StarsRating.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BsStarFill } from 'react-icons/bs';
+import PropTypes from 'prop-types';
 
 const StarsRating = ({ stars }) => {
   return (
@@ -21,6 +22,10 @@ const StarsRating = ({ stars }) => {
       </Col>
     </Row>
   );
+};
+
+StarsRating.propTypes = {
+  stars: PropTypes.number,
 };
 
 export default StarsRating;

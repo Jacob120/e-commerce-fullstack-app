@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import { BsCartPlus } from 'react-icons/bs';
 import { BiGlassesAlt } from 'react-icons/bi';
 import StarsRating from '../StarsRating/StarsRating';
+import PropTypes from 'prop-types';
 
 const ProductBox = ({
   id,
@@ -43,11 +44,11 @@ const ProductBox = ({
         <Card.Text className="m-0">
           {oldPrice ? (
             <span>
-              <span className={styles.new_price}>Now {price}</span>{' '}
-              <span className={styles.old_price}>Was {oldPrice}</span>
+              <span className={styles.new_price}>Now ${price}</span>{' '}
+              <span className={styles.old_price}>Was ${oldPrice}</span>
             </span>
           ) : (
-            <span>{price}</span>
+            <span>${price}</span>
           )}
         </Card.Text>
         <div className="d-flex justify-content-center">
@@ -69,6 +70,20 @@ const ProductBox = ({
       </Card.Body>
     </Card>
   );
+};
+
+ProductBox.propTypes = {
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  starsRating: PropTypes.number,
+  onSale: PropTypes.bool,
+  oldPrice: PropTypes.number,
+  topSale: PropTypes.bool,
+  outOfStock: PropTypes.bool,
 };
 
 export default ProductBox;

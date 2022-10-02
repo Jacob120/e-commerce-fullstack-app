@@ -66,14 +66,14 @@ const ProductPage = () => {
             {productData.oldPrice ? (
               <span>
                 <span className={styles.new_price}>
-                  Now {productData.price}
+                  Now ${productData.price}
                 </span>{' '}
                 <span className={styles.old_price}>
-                  Was {productData.oldPrice}
+                  Was ${productData.oldPrice}
                 </span>
               </span>
             ) : (
-              <span className={styles.new_price}>{productData.price}</span>
+              <span className={styles.new_price}>${productData.price}</span>
             )}
           </h4>
           <p className={styles.product_description}>

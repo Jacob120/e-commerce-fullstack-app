@@ -8,6 +8,8 @@ import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { BsTrash } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+
 const CartPage = () => {
   return (
     <div>
@@ -79,13 +81,15 @@ const CartPage = () => {
               />
             </Form>
             <p className="mt-3 px-3">Total price: $35</p>
-            <Button
-              variant="outline-secondary"
-              size="lg"
-              className="mx-3 mb-3 "
-            >
-              Proceed to checkout
-            </Button>
+            <Link to="/checkout">
+              <Button
+                variant="outline-secondary"
+                size="lg"
+                className="mx-3 mb-3 "
+              >
+                Proceed to checkout
+              </Button>
+            </Link>
           </Col>
         </Row>
       </Container>

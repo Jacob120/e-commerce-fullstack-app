@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import styles from './HomeCarousel.module.scss';
+import Button from 'react-bootstrap/Button';
 
 const HomeCarousel = () => {
   return (
@@ -13,10 +14,15 @@ const HomeCarousel = () => {
           height={'500px'}
         />
         <Carousel.Caption>
-          <h3 className={styles.slide_title}>First slide label</h3>
-          <p className={styles.slide_subtitle}>
-            Nulla vitae elit libero, a pharetra augue mollis interdum.
-          </p>
+          <div className={styles.carousel_content}>
+            <h3 className={'mb-0 ' + styles.slide_title}>
+              Sneakers & Athletic Shoes
+            </h3>
+            <div className="d-flex justify-content-center align-items-center ">
+              <p className={'px-3 m-0 ' + styles.slide_subtitle}>from $9.99</p>
+              <Button variant="light">SHOP NOW</Button>
+            </div>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className={styles.slide}>
@@ -28,13 +34,16 @@ const HomeCarousel = () => {
         />
 
         <Carousel.Caption>
-          <h3 className={styles.slide_title}>Second slide label</h3>
-          <p className={styles.slide_subtitle}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
+          <div className={styles.carousel_content}>
+            <h3 className={styles.slide_title}>This Week's Most Wanted</h3>
+            <div className="d-flex justify-content-center align-items-center ">
+              <p className={'px-3 m-0 ' + styles.slide_subtitle}>from $49.99</p>
+              <Button variant="light">DISCOVER NOW</Button>
+            </div>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item className={styles.slide}>
         <img
           className={'d-block w-100 ' + styles.slide_image}
           src="./images/carousel/carousel-slide-3.jpg"
@@ -42,11 +51,16 @@ const HomeCarousel = () => {
           height={'500px'}
         />
 
-        <Carousel.Caption className={styles.slide}>
-          <h3 className={styles.slide_title}>Third slide label</h3>
-          <p className={styles.slide_subtitle}>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+        <Carousel.Caption>
+          <div className={styles.carousel_content}>
+            <h3 className={styles.slide_title}>Can't miss Nike!</h3>
+            <div className="d-flex justify-content-center align-items-center ">
+              <p className={'px-3 m-0 ' + styles.slide_subtitle}>
+                starting at 60% off
+              </p>
+              <Button variant="light">DISCOVER NOW</Button>
+            </div>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

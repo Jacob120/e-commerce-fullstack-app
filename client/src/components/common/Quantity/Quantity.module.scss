@@ -1,0 +1,10 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  border: 1px solid rgba(7, 7, 7, 0.1);
+
+  .quantity_input {
+    border: none;
+    width: 50px;
+  }
+}

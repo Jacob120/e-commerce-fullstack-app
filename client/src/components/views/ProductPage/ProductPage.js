@@ -17,12 +17,17 @@ import {
   BsInstagram,
   BsPinterest,
 } from 'react-icons/bs';
+import Quantity from '../../common/Quantity/Quantity';
 
 const ProductPage = () => {
   const { productId } = useParams();
   const productData = useSelector((state) => getProductById(state, productId));
 
   const [activePhoto, setActivePhoto] = useState(productData.image);
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <Container>
@@ -82,8 +87,9 @@ const ProductPage = () => {
             lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi
             neque euismod dui, eu pulvinar nunc sapien
           </p>
-          <div>
-            <p> Quantity:</p>
+          <div className="d-flex align-items-center mb-3">
+            <p className="mb-0">Quantity: </p>
+            <Quantity />
           </div>
           <Button
             variant="outline-secondary"

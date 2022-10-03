@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styles from './ProductPage.module.scss';
 import StarsRating from '../../common/StarsRating/StarsRating';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getProductById } from '../../../redux/productsRedux';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getProductById } from '../../../redux/productsRedux';
 
 import {
   BsCartPlus,
@@ -18,15 +18,25 @@ import {
   BsPinterest,
 } from 'react-icons/bs';
 import Quantity from '../../common/Quantity/Quantity';
+import { addProductToCart, getCartItems } from '../../../redux/cartRedux';
 
 const ProductPage = () => {
+  const dispatch = useDispatch();
   const { productId } = useParams();
+
   const productData = useSelector((state) => getProductById(state, productId));
-
+  // const cart = useSelector((state) => getCartItems(state));
+  // console.log(cart);
   const [activePhoto, setActivePhoto] = useState(productData.image);
+  const [value, setValue] = useState(1);
 
+  const changeValue = (value) => {
+    setValue(value);
+  };
+  console.log(value);
   const handleAddToCart = (e) => {
     e.preventDefault();
+    dispatch(addProductToCart({ ...productData }));
   };
 
   return (
@@ -89,12 +99,13 @@ const ProductPage = () => {
           </p>
           <div className="d-flex align-items-center mb-3">
             <p className="mb-0">Quantity: </p>
-            <Quantity />
+            <Quantity onClick={changeValue} />
           </div>
           <Button
             variant="outline-secondary"
             size="md"
             className="d-flex align-items-center"
+            onClick={handleAddToCart}
           >
             <BsCartPlus className="mx-1 " />
             ADD TO CART

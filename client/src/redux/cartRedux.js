@@ -1,25 +1,23 @@
+import initialState from './initialState';
+
 /* selectors */
-export const getAll = ({ cart }) => cart.products;
-export const getCount = ({ cart }) => cart.products.length;
+export const getCartItems = ({ cart }) => cart.cart;
+export const getCartCount = ({ cart }) => cart.products.length;
 
 /* action name creator */
-const reducerName = 'cart';
-const createActionName = (name) => `app/${reducerName}/${name}`;
+const createActionName = (actionName) => `app/cart/${actionName}/`;
 
 /* action types */
 const ADD_PRODUCT = createActionName('ADD_PRODUCT');
 
 /* action creators */
-export const addProduct = (payload) => ({ payload, type: ADD_PRODUCT });
+export const addProductToCart = (payload) => ({ payload, type: ADD_PRODUCT });
 
 /* reducer */
-function cartReducer(statePart = [], action = {}) {
+function cartReducer(statePart = initialState, action = {}) {
   switch (action.type) {
     case ADD_PRODUCT: {
-      return {
-        ...statePart,
-        products: [...statePart.products, action.payload],
-      };
+      return { ...statePart, cart: action.payload };
     }
     default:
       return statePart;

@@ -9,8 +9,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getCartItems } from '../../../redux/cartRedux';
 
 const CartPage = () => {
+  const cart = useSelector((state) => getCartItems(state));
+  console.log(cart);
   return (
     <div className={'pb-5 ' + styles.root}>
       <h2 className={'text-center ' + styles.header}>Shopping Cart</h2>

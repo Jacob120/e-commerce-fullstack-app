@@ -2,6 +2,7 @@ const initialState = {
   products: [
     {
       id: '1',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -20,6 +21,7 @@ const initialState = {
     },
     {
       id: '2',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -32,6 +34,7 @@ const initialState = {
     },
     {
       id: '3',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -44,6 +47,7 @@ const initialState = {
     },
     {
       id: '4',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -56,6 +60,7 @@ const initialState = {
     },
     {
       id: '5',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -67,6 +72,7 @@ const initialState = {
     },
     {
       id: '6',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -78,6 +84,7 @@ const initialState = {
     },
     {
       id: '7',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -89,6 +96,7 @@ const initialState = {
     },
     {
       id: '8',
+      quantity: 1,
       type: 'Men',
       name: 'The North Face',
       category: 'Boots',
@@ -100,6 +108,7 @@ const initialState = {
     },
     {
       id: '9',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -111,6 +120,7 @@ const initialState = {
     },
     {
       id: '10',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -122,6 +132,7 @@ const initialState = {
     },
     {
       id: '11',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -132,6 +143,7 @@ const initialState = {
     },
     {
       id: '12',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -142,6 +154,7 @@ const initialState = {
     },
     {
       id: '13',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -152,6 +165,7 @@ const initialState = {
     },
     {
       id: '14',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -162,6 +176,7 @@ const initialState = {
     },
     {
       id: '15',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -173,6 +188,7 @@ const initialState = {
     },
     {
       id: '16',
+      quantity: 1,
       type: 'Women',
       name: 'The North Face',
       category: 'Boots',
@@ -183,6 +199,7 @@ const initialState = {
     },
   ],
   user: null,
+  cart: [],
 };
 
 export default initialState;

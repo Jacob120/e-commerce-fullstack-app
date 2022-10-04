@@ -8,6 +8,9 @@ import { BsCartPlus } from 'react-icons/bs';
 import { BiGlassesAlt } from 'react-icons/bi';
 import StarsRating from '../StarsRating/StarsRating';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProductToCart } from '../../../redux/cartRedux';
+import { getProductById } from '../../../redux/productsRedux';
 
 const ProductBox = ({
   id,
@@ -22,6 +25,14 @@ const ProductBox = ({
   topSale,
   outOfStock,
 }) => {
+  const dispatch = useDispatch();
+  const productData = useSelector((state) => getProductById(state, id));
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    dispatch(addProductToCart({ ...productData }));
+  };
+
   return (
     <Card style={{ height: '100%' }} className={styles.card_wrapper}>
       <Card.Img variant="top" src={image} className={styles.image} />
@@ -56,7 +67,12 @@ const ProductBox = ({
         </div>
 
         {!outOfStock && (
-          <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            className="mx-1 mb-1"
+            onClick={handleAddToCart}
+          >
             <BsCartPlus className="mx-1 " />
             ADD TO CART
           </Button>

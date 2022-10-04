@@ -15,7 +15,6 @@ import {
 
 const FeaturedProducts = () => {
   const allProducts = useSelector(getAllProducts);
-  console.log(allProducts);
   const menProducts = useSelector(getMenProducts);
   const womenProducts = useSelector(getWomenProducts);
 

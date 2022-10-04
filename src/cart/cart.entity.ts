@@ -5,7 +5,6 @@ import {
   Column,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { OrderEntity } from 'src/order/order.entity';
 import { ProductEntity } from 'src/product/product.entity';
 import { Users } from 'src/auth/user.entity';
 

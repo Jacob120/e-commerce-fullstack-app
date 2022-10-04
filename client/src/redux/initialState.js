@@ -199,7 +199,40 @@ const initialState = {
     },
   ],
   user: null,
-  cart: [],
+  cart: [
+    {
+      id: '1',
+      quantity: 1,
+      type: 'Men',
+      name: 'The North Face',
+      category: 'Boots',
+      price: 35,
+      onSale: true,
+      oldPrice: 55,
+      outOfStock: false,
+      image: '/images/products/men-boots.1.1.png',
+      gallery: [
+        '/images/products/men-boots.1.1.png',
+        '/images/products/men-boots.1.2.png',
+        '/images/products/men-boots.1.3.png',
+        '/images/products/men-boots.1.4.png',
+      ],
+      starsRating: 4,
+    },
+    {
+      id: '2',
+      quantity: 1,
+      type: 'Men',
+      name: 'The North Face',
+      category: 'Boots',
+      price: 35,
+      onSale: false,
+      topSale: true,
+      outOfStock: false,
+      image: '/images/products/men-boots.2.1.png',
+      starsRating: 4,
+    },
+  ],
 };
 
 export default initialState;

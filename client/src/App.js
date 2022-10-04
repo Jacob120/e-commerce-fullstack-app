@@ -7,6 +7,9 @@ import NavBar from './components/layout/NavBar/NavBar';
 import CartPage from './components/views/CartPage/CartPage';
 import CheckoutPage from './components/views/CheckoutPage/CheckoutPage';
 import Footer from './components/layout/Footer/Footer';
+import Login from './components/views/Login/Login';
+import Logout from './components/views/Logout/Logout';
+import Register from './components/views/Register/Register';
 
 const App = () => {
   return (
@@ -19,6 +22,9 @@ const App = () => {
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
       <Footer />
     </main>

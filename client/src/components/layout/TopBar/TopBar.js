@@ -27,7 +27,11 @@ const TopBar = () => {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ color: '#445f84' }} eventKey="disabled">
+          <Nav.Link
+            href="/login"
+            style={{ color: '#445f84' }}
+            eventKey="disabled"
+          >
             <BsPerson /> Login
           </Nav.Link>
         </Nav.Item>

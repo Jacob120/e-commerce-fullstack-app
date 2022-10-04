@@ -18,15 +18,13 @@ export class CartService {
   async addToCart(
     productId: string,
     quantity: number,
-    username: string,
+    user: string,
   ): Promise<any> {
     const cartItems = await this.cartRepository.find({
       relations: ['item', 'user'],
     });
     const product = await this.productsService.getOne(productId);
-    const authUser = await this.userRepository.findOne({
-      where: { username },
-    });
+    const authUser = await this.userRepository.findOneBy({ username: user });
 
     //Confirm the product exists.
     if (product) {

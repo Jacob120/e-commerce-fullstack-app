@@ -18,6 +18,9 @@ export class ProductEntity {
   name: string;
 
   @Column()
+  quantity: number;
+
+  @Column()
   type: string;
 
   @Column()

@@ -18,6 +18,7 @@ const initialState = {
         '/images/products/men-boots.1.4.png',
       ],
       starsRating: 4,
+      size: ['40', '41', '42', '43'],
     },
     {
       id: '2',
@@ -42,7 +43,13 @@ const initialState = {
       onSale: false,
       topSale: false,
       outOfStock: true,
-      image: '/images/products/men-boots.3.1.jpg',
+      image: '/images/products/men-boots.4.1.jpg',
+      gallery: [
+        '/images/products/men-boots.4.1.jpg',
+        '/images/products/men-boots.4.2.jpg',
+        '/images/products/men-boots.4.3.jpg',
+        '/images/products/men-boots.4.4.jpg',
+      ],
       starsRating: 5,
     },
     {
@@ -55,7 +62,7 @@ const initialState = {
       onSale: true,
       topSale: true,
       outOfStock: false,
-      image: '/images/products/boots-1.jpg',
+      image: '/images/products/men-boots.5.1.jpg',
       starsRating: 5,
     },
     {
@@ -199,40 +206,7 @@ const initialState = {
     },
   ],
   user: null,
-  cart: [
-    {
-      id: '1',
-      quantity: 1,
-      type: 'Men',
-      name: 'The North Face',
-      category: 'Boots',
-      price: 35,
-      onSale: true,
-      oldPrice: 55,
-      outOfStock: false,
-      image: '/images/products/men-boots.1.1.png',
-      gallery: [
-        '/images/products/men-boots.1.1.png',
-        '/images/products/men-boots.1.2.png',
-        '/images/products/men-boots.1.3.png',
-        '/images/products/men-boots.1.4.png',
-      ],
-      starsRating: 4,
-    },
-    {
-      id: '2',
-      quantity: 1,
-      type: 'Men',
-      name: 'The North Face',
-      category: 'Boots',
-      price: 35,
-      onSale: false,
-      topSale: true,
-      outOfStock: false,
-      image: '/images/products/men-boots.2.1.png',
-      starsRating: 4,
-    },
-  ],
+  cart: [],
 };
 
 export default initialState;

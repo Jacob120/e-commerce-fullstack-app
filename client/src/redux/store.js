@@ -1,16 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import initialState from './initialState';
-import cartReducer from './cartRedux';
+import { cartReducer } from './cartSlice';
 import usersReducer from './usersRedux';
 import productsReducer from './productsRedux';
+import { apiSlice } from './apiSlice';
 
 const store = configureStore({
   reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
     products: productsReducer,
     cart: cartReducer,
     users: usersReducer,
   },
-  initialState,
   middleware: (customizedMiddleware) =>
     customizedMiddleware({
       serializableCheck: false,

@@ -18,25 +18,27 @@ import {
   BsPinterest,
 } from 'react-icons/bs';
 import Quantity from '../../common/Quantity/Quantity';
-import { addProductToCart, getCartItems } from '../../../redux/cartRedux';
+import { getCartItems } from '../../../redux/cartRedux';
+import { addToCart } from '../../../redux/cartSlice';
 
 const ProductPage = () => {
   const dispatch = useDispatch();
   const { productId } = useParams();
 
   const productData = useSelector((state) => getProductById(state, productId));
-  // const cart = useSelector((state) => getCartItems(state));
-  // console.log(cart);
+  const cart = useSelector((state) => getCartItems(state));
+  console.log(cart);
   const [activePhoto, setActivePhoto] = useState(productData.image);
   const [value, setValue] = useState(1);
+  const [activeSize, setActiveSize] = useState(productData.size[0]);
 
   const changeValue = (value) => {
     setValue(value);
   };
-  console.log(value);
+
   const handleAddToCart = (e) => {
     e.preventDefault();
-    dispatch(addProductToCart({ ...productData }));
+    dispatch(addToCart({ ...productData, quantity: value, size: activeSize }));
   };
 
   return (
@@ -98,13 +100,30 @@ const ProductPage = () => {
             neque euismod dui, eu pulvinar nunc sapien
           </p>
           <div className="d-flex align-items-center mb-3">
-            <p className="mb-0">Quantity: </p>
+            <p className="mb-0 px-3">Quantity: </p>
             <Quantity onClick={changeValue} />
+          </div>
+          <div className="d-flex mb-3">
+            {productData.size.map((size) => (
+              <div className={styles.size_buttons}>
+                <button
+                  key={size}
+                  className={
+                    size === activeSize
+                      ? styles.size_active
+                      : styles.size_inactive
+                  }
+                  onClick={() => setActiveSize(size)}
+                >
+                  {size}
+                </button>
+              </div>
+            ))}
           </div>
           <Button
             variant="outline-secondary"
             size="md"
-            className="d-flex align-items-center"
+            className="d-flex align-items-center mx-1"
             onClick={handleAddToCart}
           >
             <BsCartPlus className="mx-1 " />

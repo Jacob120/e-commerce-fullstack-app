@@ -12,3 +12,16 @@
     border-radius: 0;
   }
 }
+
+.cart_icon {
+  text-decoration: none;
+
+  .cart_quantity {
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    color: $text-color-white;
+    background-color: $main-color;
+    border-radius: 50%;
+  }
+}

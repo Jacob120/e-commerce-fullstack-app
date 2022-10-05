@@ -33,16 +33,25 @@ export class ProductEntity {
   onSale: boolean;
 
   @Column()
-  oldPrice: string;
+  oldPrice: number;
 
   @Column()
   outOfStock: boolean;
+
+  @Column()
+  topSale: boolean;
 
   @Column()
   image: string;
 
   @Column({ type: 'simple-array' })
   gallery: string[];
+
+  @Column({ type: 'simple-array' })
+  size: string[];
+
+  @Column()
+  starsRating: number;
 
   @CreateDateColumn()
   createdAt: string;

@@ -12,11 +12,23 @@ import {
   getMenProducts,
   getWomenProducts,
 } from '../../../redux/productsRedux';
+import { useGetPokemonsQuery } from '../../../redux/apiSlice';
 
 const FeaturedProducts = () => {
   const allProducts = useSelector(getAllProducts);
   const menProducts = useSelector(getMenProducts);
   const womenProducts = useSelector(getWomenProducts);
+
+  const {
+    data: pokemons,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetPokemonsQuery();
+
+  const data = JSON.stringify(pokemons);
+  console.log(data);
 
   return (
     <div className={styles.products_root}>

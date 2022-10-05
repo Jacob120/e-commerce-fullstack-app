@@ -23,7 +23,7 @@ export class ProductsController {
     return await this.productsService.getAll();
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   async Create(
     @Request() req,
@@ -32,7 +32,7 @@ export class ProductsController {
     return await this.productsService.create(product);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get(':id')
   async GetOne(@Param() id: string): Promise<ProductEntity> {
     return await this.productsService.getOne(id);

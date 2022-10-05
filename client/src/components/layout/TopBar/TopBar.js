@@ -9,8 +9,6 @@ const TopBar = () => {
     sessionStorage.getItem('username');
   }, []);
 
-  console.log(sessionStorage.getItem('username'));
-
   return (
     <Container>
       <Nav className={`justify-content-end ${styles.root}`} activeKey="/">

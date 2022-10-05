@@ -10,8 +10,19 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { BsCart, BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const cart = useSelector((state) => state.cart.cart);
+
+  const getTotalQuantity = () => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.quantity;
+    });
+    return total;
+  };
+
   return (
     <Navbar expand="lg" sticky="top" className={styles.root}>
       <Container>
@@ -58,10 +69,24 @@ const NavBar = () => {
               </Form>
             </Col>
             <Col className="col-4">
-              <Link to="/cart">
+              <Link
+                to="/cart"
+                className={
+                  'd-flex align-items-center justify-content-around ' +
+                  styles.cart_icon
+                }
+              >
                 <Button variant="outline-secondary">
                   <BsCart />
                 </Button>
+                <p
+                  className={
+                    'd-flex align-items-center justify-content-center m-0 p-1 ' +
+                    styles.cart_quantity
+                  }
+                >
+                  {getTotalQuantity() || 0}
+                </p>
               </Link>
             </Col>
           </Row>

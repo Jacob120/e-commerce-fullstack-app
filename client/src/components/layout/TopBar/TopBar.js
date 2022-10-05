@@ -1,9 +1,16 @@
 import Nav from 'react-bootstrap/Nav';
 import styles from './TopBar.module.scss';
 import Container from 'react-bootstrap/Container';
-import { BsPerson, BsTelephone } from 'react-icons/bs';
+import { BsPerson, BsTelephone, BsPersonPlus } from 'react-icons/bs';
+import { useEffect } from 'react';
 
 const TopBar = () => {
+  useEffect(() => {
+    sessionStorage.getItem('username');
+  }, []);
+
+  console.log(sessionStorage.getItem('username'));
+
   return (
     <Container>
       <Nav className={`justify-content-end ${styles.root}`} activeKey="/">
@@ -26,15 +33,49 @@ const TopBar = () => {
             Contact us
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            href="/login"
-            style={{ color: '#445f84' }}
-            eventKey="disabled"
-          >
-            <BsPerson /> Login
-          </Nav.Link>
-        </Nav.Item>
+        {sessionStorage && sessionStorage.getItem('username') ? (
+          <div className="d-flex">
+            <Nav.Item>
+              <Nav.Link
+                href="/profile"
+                style={{ color: '#445f84' }}
+                eventKey="disabled"
+              >
+                <BsPerson /> Profile
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                href="/logout"
+                style={{ color: '#445f84' }}
+                eventKey="disabled"
+              >
+                Logout
+              </Nav.Link>
+            </Nav.Item>
+          </div>
+        ) : (
+          <div className="d-flex">
+            <Nav.Item>
+              <Nav.Link
+                href="/login"
+                style={{ color: '#445f84' }}
+                eventKey="disabled"
+              >
+                <BsPerson /> Login
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                href="/register"
+                style={{ color: '#445f84' }}
+                eventKey="disabled"
+              >
+                <BsPersonPlus /> Sign up
+              </Nav.Link>
+            </Nav.Item>
+          </div>
+        )}
       </Nav>
     </Container>
   );

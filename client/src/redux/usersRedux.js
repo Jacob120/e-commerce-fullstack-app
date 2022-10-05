@@ -1,3 +1,5 @@
+import initialState from './initialState';
+
 // selectors
 export const getUser = ({ user }) => user;
 
@@ -10,7 +12,7 @@ const LOG_OUT = createActionName('LOG_OUT');
 export const logIn = (payload) => ({ type: LOG_IN, payload });
 export const logOut = () => ({ type: LOG_OUT });
 
-const usersReducer = (statePart = null, action) => {
+const usersReducer = (statePart = initialState, action) => {
   switch (action.type) {
     case LOG_IN:
       return action.payload;

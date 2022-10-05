@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer/Footer';
 import Login from './components/views/Login/Login';
 import Logout from './components/views/Logout/Logout';
 import Register from './components/views/Register/Register';
+import { NotFound } from './components/views/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </main>

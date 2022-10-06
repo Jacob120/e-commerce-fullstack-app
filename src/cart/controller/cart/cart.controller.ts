@@ -7,11 +7,12 @@ import {
   Body,
   UseGuards,
   Param,
+  Put,
 } from '@nestjs/common';
 import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 import { CartEntity } from 'src/cart/cart.entity';
 import { CartService } from 'src/cart/service/cart/cart.service';
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 @Controller('api/cart')
 export class CartController {
@@ -34,6 +35,15 @@ export class CartController {
   async getItemsInCart(@Request() body, @Request() req): Promise<CartEntity[]> {
     const { username } = body;
     return await this.cartService.getItemsInCart('JohnDoe');
+  }
+
+  @Put(':id')
+  async Update(
+    @Param() id: string,
+    @Body() cart: CartEntity,
+    @Request() req,
+  ): Promise<UpdateResult> {
+    return await this.cartService.update(id, cart);
   }
 
   @Delete(':id')

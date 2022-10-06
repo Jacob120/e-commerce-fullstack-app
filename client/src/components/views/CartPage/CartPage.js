@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CartPage.module.scss';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,21 +7,22 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Quantity from '../../common/Quantity/Quantity';
 import { useDeleteCartItemMutation } from '../../../redux/cartSlice';
 import { selectAllCart } from '../../../redux/cartSlice';
 
 const CartPage = () => {
-  const dispatch = useDispatch();
   const cart = useSelector(selectAllCart);
   const [deleteCartItem] = useDeleteCartItemMutation(
     {},
     { refetchOnMountOrArgChange: true },
   );
   const [shippingValue, setShippingValue] = useState(0);
+  const [refresh, setRefresh] = useState(false);
 
   const getTotal = () => {
     let totalQuantity = 0;
@@ -40,6 +41,10 @@ const CartPage = () => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    setRefresh(false);
+  }, [refresh]);
 
   return (
     <div className={'pb-5 ' + styles.root}>
@@ -78,10 +83,7 @@ const CartPage = () => {
                       <td className="col-2 py-5 ">{product.size}</td>
                       <td className="col-2 py-5 ">${product.item.price}</td>
                       <td className="col-2  py-5 ">
-                        <Quantity
-                          quantity={product.quantity}
-                          id={product.item.id}
-                        />
+                        <Quantity quantity={product.quantity} id={product.id} />
                       </td>
                       <td className="col-2  py-5 ">
                         ${product.item.price * product.quantity}
@@ -90,7 +92,9 @@ const CartPage = () => {
                         <Button
                           variant="outline-dark"
                           size="sm"
-                          onClick={() => handleRemoveFromCart(product.id)}
+                          onClick={() =>
+                            handleRemoveFromCart(product.id) && setRefresh(true)
+                          }
                         >
                           <BsTrash />
                         </Button>

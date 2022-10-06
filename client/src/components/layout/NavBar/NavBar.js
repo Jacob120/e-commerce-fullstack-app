@@ -15,7 +15,6 @@ import { selectAllCart } from '../../../redux/cartSlice';
 
 const NavBar = () => {
   const cart = useSelector(selectAllCart);
-  console.log(cart);
 
   const getTotalQuantity = () => {
     let total = 0;

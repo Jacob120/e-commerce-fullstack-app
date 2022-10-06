@@ -58,6 +58,10 @@ body {
   border-radius: 50rem;
 }
 
+.btn-outline-dark {
+  border: none;
+}
+
 // Override breadcrumb link style
 .breadcrumb-item > a {
   text-decoration: none;

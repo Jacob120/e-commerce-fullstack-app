@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CartEntity } from 'src/cart/cart.entity';
 import { ProductsService } from 'src/product/service/product/product.service';
@@ -61,7 +61,11 @@ export class CartService {
     const userCart = await this.cartRepository.find({
       relations: ['item', 'user'],
     });
-    return (await userCart).filter((item) => item.user.username === username);
+    return await userCart.filter((item) => item.user.username === username);
+  }
+
+  async update(id: string, cart: CartEntity): Promise<UpdateResult> {
+    return await this.cartRepository.update(id, cart);
   }
 
   async delete(productId: string): Promise<DeleteResult> {

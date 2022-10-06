@@ -57,13 +57,6 @@ const ProductBox = ({
         <div className="d-flex justify-content-center">
           <StarsRating stars={starsRating} />
         </div>
-
-        {!outOfStock && (
-          <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
-            <BsCartPlus className="mx-1 " />
-            ADD TO CART
-          </Button>
-        )}
         <Link to={'/product/' + id}>
           <Button variant="outline-secondary" size="sm" className="mx-1 mb-1">
             <BiGlassesAlt className="mx-1 " />

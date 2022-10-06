@@ -7,5 +7,3 @@ export const apiSlice = createApi({
   tagTypes: ['Products', 'Cart'],
   endpoints: (builder) => ({}),
 });
-
-export const { useGetProductsQuery, useGetProductsByIdQuery } = apiSlice;

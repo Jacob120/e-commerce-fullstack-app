@@ -11,15 +11,17 @@ import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Quantity from '../../common/Quantity/Quantity';
-import { removeItem } from '../../../redux/cartSlice';
+import { useDeleteCartItemMutation } from '../../../redux/cartSlice';
 import { selectAllCart } from '../../../redux/cartSlice';
 
 const CartPage = () => {
   const dispatch = useDispatch();
-  const [shippingValue, setShippingValue] = useState(0);
   const cart = useSelector(selectAllCart);
-
-  console.log('cart', cart);
+  const [deleteCartItem] = useDeleteCartItemMutation(
+    {},
+    { refetchOnMountOrArgChange: true },
+  );
+  const [shippingValue, setShippingValue] = useState(0);
 
   const getTotal = () => {
     let totalQuantity = 0;
@@ -29,6 +31,14 @@ const CartPage = () => {
       totalPrice += cart.item.price * cart.quantity;
     });
     return { totalPrice, totalQuantity };
+  };
+
+  const handleRemoveFromCart = async (id) => {
+    try {
+      await deleteCartItem(id).unwrap();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -80,7 +90,7 @@ const CartPage = () => {
                         <Button
                           variant="outline-dark"
                           size="sm"
-                          // onClick={() => dispatch(removeItem(product.item.id))}
+                          onClick={() => handleRemoveFromCart(product.id)}
                         >
                           <BsTrash />
                         </Button>

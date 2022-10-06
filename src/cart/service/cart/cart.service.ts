@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CartEntity } from 'src/cart/cart.entity';
 import { ProductsService } from 'src/product/service/product/product.service';
@@ -62,5 +62,9 @@ export class CartService {
       relations: ['item', 'user'],
     });
     return (await userCart).filter((item) => item.user.username === username);
+  }
+
+  async delete(productId: string): Promise<DeleteResult> {
+    return await this.cartRepository.delete(productId);
   }
 }

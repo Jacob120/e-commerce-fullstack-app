@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const BannerGroup = () => {
   return (
     <Row className={styles.root_banner}>
-      <Col lg={8} className={styles.left_side}>
+      <Col md={12} lg={8} className={styles.left_side}>
         <Row xs={12}>
           <Col md={6} className={styles.banner_wrapper}>
             <Link to="/">
@@ -44,7 +44,7 @@ const BannerGroup = () => {
             </Link>
           </Col>
         </Row>
-        <Row className="d-sm-none d-md-block">
+        <Row className="d-sm-none d-md-none d-lg-block">
           <Col xs={12} className={styles.banner_wrapper}>
             <Link to="/">
               <div className={styles.bottom_banner_text}>
@@ -65,7 +65,7 @@ const BannerGroup = () => {
           </Col>
         </Row>
       </Col>
-      <Col lg={4} className={styles.banner_right_wrapper}>
+      <Col md={12} lg={4} className={styles.banner_right_wrapper}>
         <Link to="/">
           <div className={styles.right_banner_text}>
             <p className="m-0">On Sale</p>

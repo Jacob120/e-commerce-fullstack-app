@@ -14,7 +14,7 @@ export const cartApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: (result, error, arg) => [
         { type: 'Cart', id: 'LIST' },
-        ...result.ids.map((id) => ({ type: 'Cart', id })),
+        ...result.ids.map((id) => ({ type: 'Cart', id: 'LIST' })),
       ],
     }),
     addCartItem: builder.mutation({
@@ -27,10 +27,21 @@ export const cartApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Cart', id: 'LIST' }],
     }),
+    deleteCartItem: builder.mutation({
+      query: (id) => ({
+        url: `/cart/${id}`,
+        method: 'DELETE',
+        invalidatesTags: (result, error, arg) => [{ type: 'Cart', id: arg.id }],
+      }),
+    }),
   }),
 });
 
-export const { useGetCartQuery, useAddCartItemMutation } = cartApiSlice;
+export const {
+  useGetCartQuery,
+  useAddCartItemMutation,
+  useDeleteCartItemMutation,
+} = cartApiSlice;
 
 // returns the query result object
 export const selectCartResult = cartApiSlice.endpoints.getCart.select();

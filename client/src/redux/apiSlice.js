@@ -1,20 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_URL } from '../config';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api' }),
-  endpoints: (builder) => ({
-    getPokemons: builder.query({
-      query: () => '/v2',
-    }),
-    addProduct: builder.mutation({
-      query: (todo) => ({
-        url: '/todos',
-        method: 'POST',
-        body: todo,
-      }),
-    }),
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/api' }),
+  tagTypes: ['Products', 'Cart'],
+  endpoints: (builder) => ({}),
 });
 
-export const { useGetPokemonsQuery } = apiSlice;
+export const { useGetProductsQuery, useGetProductsByIdQuery } = apiSlice;

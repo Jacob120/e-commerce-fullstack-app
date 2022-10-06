@@ -13,13 +13,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const NavBar = () => {
-  const cart = useSelector((state) => state.cart.cart);
+  // const cart = useSelector((state) => state.cart.cart);
 
   const getTotalQuantity = () => {
     let total = 0;
-    cart.forEach((item) => {
-      total += item.quantity;
-    });
+    // cart.forEach((item) => {
+    //   total += item.quantity;
+    // });
     return total;
   };
 

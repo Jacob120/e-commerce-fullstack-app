@@ -10,21 +10,23 @@ import Button from 'react-bootstrap/Button';
 import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartItems } from '../../../redux/cartRedux';
 import Quantity from '../../common/Quantity/Quantity';
 import { removeItem } from '../../../redux/cartSlice';
+import { selectAllCart } from '../../../redux/cartSlice';
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const [shippingValue, setShippingValue] = useState(0);
-  const cart = useSelector((state) => getCartItems(state));
+  const cart = useSelector(selectAllCart);
+
+  console.log('cart', cart);
 
   const getTotal = () => {
     let totalQuantity = 0;
     let totalPrice = 0;
-    cart.forEach((item) => {
-      totalQuantity += item.quantity;
-      totalPrice += item.price * item.quantity;
+    cart.forEach((cart) => {
+      totalQuantity += cart.item.quantity;
+      totalPrice += cart.item.price * cart.quantity;
     });
     return { totalPrice, totalQuantity };
   };
@@ -52,30 +54,33 @@ const CartPage = () => {
                 </tr>
               </thead>
               {cart &&
-                cart.map((product) => (
-                  <tbody key={product.id}>
+                cart.map((product, index) => (
+                  <tbody key={index}>
                     <tr>
                       <td className="col-2 m-0 pr-5 text-center ">
                         <img
-                          src={product.image}
+                          src={product.item.image}
                           alt="boots"
                           className={styles.image}
                         />
                       </td>
-                      <td className="col-2 py-5 ">{product.name}</td>
+                      <td className="col-2 py-5 ">{product.item.name}</td>
                       <td className="col-2 py-5 ">{product.size}</td>
-                      <td className="col-2 py-5 ">${product.price}</td>
+                      <td className="col-2 py-5 ">${product.item.price}</td>
                       <td className="col-2  py-5 ">
-                        <Quantity quantity={product.quantity} id={product.id} />
+                        <Quantity
+                          quantity={product.quantity}
+                          id={product.item.id}
+                        />
                       </td>
                       <td className="col-2  py-5 ">
-                        ${product.price * product.quantity}
+                        ${product.item.price * product.quantity}
                       </td>
                       <td className="col-1  py-5">
                         <Button
                           variant="outline-dark"
                           size="sm"
-                          onClick={() => dispatch(removeItem(product.id))}
+                          // onClick={() => dispatch(removeItem(product.item.id))}
                         >
                           <BsTrash />
                         </Button>

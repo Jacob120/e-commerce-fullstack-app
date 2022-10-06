@@ -18,14 +18,19 @@ export class CartController {
   // @UseGuards(LocalAuthGuard)
   @Post()
   async AddToCart(@Body() body, @Request() req): Promise<void> {
-    const { productId, quantity, username } = body;
-    return await this.cartService.addToCart(productId, quantity, username);
+    const { productId, quantity, username, size } = body;
+    return await this.cartService.addToCart(
+      productId,
+      quantity,
+      username,
+      size,
+    );
   }
 
   // @UseGuards(LocalAuthGuard)
   @Get()
   async getItemsInCart(@Request() body, @Request() req): Promise<CartEntity[]> {
     const { username } = body;
-    return await this.cartService.getItemsInCart(username);
+    return await this.cartService.getItemsInCart('JohnDoe');
   }
 }

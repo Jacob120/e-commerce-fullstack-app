@@ -1,43 +1,50 @@
-// src/redux/cartSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createEntityAdapter } from '@reduxjs/toolkit';
+import { apiSlice } from './apiSlice';
 
-const cartSlice = createSlice({
-  name: 'cart',
-  initialState: {
-    cart: [],
-  },
-  reducers: {
-    addToCart: (state, action) => {
-      const itemInCart = state.cart.find(
-        (item) => item.id === action.payload.id,
-      );
-      if (itemInCart) {
-        itemInCart.quantity++;
-      } else {
-        state.cart.push({ ...action.payload });
-      }
-    },
-    incrementQuantity: (state, action) => {
-      const item = state.cart.find((item) => item.id === action.payload);
-      item.quantity++;
-    },
-    decrementQuantity: (state, action) => {
-      const item = state.cart.find((item) => item.id === action.payload);
-      if (item.quantity === 1) {
-        item.quantity = 1;
-      } else {
-        item.quantity--;
-      }
-    },
-    removeItem: (state, action) => {
-      const removeItem = state.cart.filter(
-        (item) => item.id !== action.payload,
-      );
-      state.cart = removeItem;
-    },
-  },
+const cartAdapter = createEntityAdapter();
+
+const initialState = cartAdapter.getInitialState();
+
+export const cartApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    getCart: builder.query({
+      query: () => '/cart',
+      transformResponse: (responseData) => {
+        return cartAdapter.setAll(initialState, responseData);
+      },
+      providesTags: (result, error, arg) => [
+        { type: 'Cart', id: 'LIST' },
+        ...result.ids.map((id) => ({ type: 'Cart', id })),
+      ],
+    }),
+    addCartItem: builder.mutation({
+      query: (initialProduct) => ({
+        url: '/cart',
+        method: 'POST',
+        body: {
+          ...initialProduct,
+        },
+      }),
+      invalidatesTags: [{ type: 'Cart', id: 'LIST' }],
+    }),
+  }),
 });
 
-export const cartReducer = cartSlice.reducer;
-export const { addToCart, incrementQuantity, decrementQuantity, removeItem } =
-  cartSlice.actions;
+export const { useGetCartQuery, useAddCartItemMutation } = cartApiSlice;
+
+// returns the query result object
+export const selectCartResult = cartApiSlice.endpoints.getCart.select();
+
+// Creates memoized selector
+const selectCartData = createSelector(
+  selectCartResult,
+  (cartResult) => cartResult.data, // normalized state object with ids & entities
+);
+
+//getSelectors creates these selectors and we rename them with aliases using destructuring
+export const {
+  selectAll: selectAllCart,
+  selectById: selectCartById,
+  selectIds: selectCartIds,
+  // Pass in a selector that returns the posts slice of state
+} = cartAdapter.getSelectors((state) => selectCartData(state) ?? initialState);

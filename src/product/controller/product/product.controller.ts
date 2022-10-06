@@ -8,6 +8,7 @@ import {
   Request,
   Body,
   UseGuards,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { UpdateResult, DeleteResult } from 'typeorm';
 import { ProductEntity } from 'src/product/product.entity';
@@ -34,7 +35,9 @@ export class ProductsController {
 
   // @UseGuards(JwtAuthGuard)
   @Get(':id')
-  async GetOne(@Param() id: string): Promise<ProductEntity> {
+  async GetOne(
+    @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
+  ): Promise<ProductEntity> {
     return await this.productsService.getOne(id);
   }
 

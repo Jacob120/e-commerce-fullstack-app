@@ -20,9 +20,6 @@ export class CartEntity {
   quantity: number;
 
   @Column()
-  price: number;
-
-  @Column()
   size: string;
 
   @ManyToOne((type) => ProductEntity, (order) => order.id)

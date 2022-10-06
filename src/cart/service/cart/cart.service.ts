@@ -19,6 +19,7 @@ export class CartService {
     productId: string,
     quantity: number,
     user: string,
+    size: string,
   ): Promise<any> {
     const cartItems = await this.cartRepository.find({
       relations: ['item', 'user'],
@@ -30,7 +31,7 @@ export class CartService {
     if (product) {
       //confirm if user has item in cart
       const cart = cartItems.filter(
-        (item) => item.item.id === product.id && item.user.id === authUser.id,
+        (item) => item.item.id === productId && item.user.username === user,
       );
       if (cart.length < 1) {
         const newItem = this.cartRepository.create({
@@ -39,7 +40,7 @@ export class CartService {
         });
         newItem.user = authUser;
         newItem.item = product;
-        this.cartRepository.save(newItem);
+        newItem.size = size;
 
         return await this.cartRepository.save(newItem);
       } else {

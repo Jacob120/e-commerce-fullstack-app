@@ -5,9 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { extendedApiSlice } from './redux/productsSlice';
+import { cartApiSlice } from './redux/cartSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/settings.scss';
 import './styles/global.scss';
+
+store.dispatch(extendedApiSlice.endpoints.getProducts.initiate());
+store.dispatch(cartApiSlice.endpoints.getCart.initiate());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

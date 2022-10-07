@@ -4,6 +4,6 @@ import { API_URL } from '../config';
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/api' }),
-  tagTypes: ['Products', 'Cart'],
+  tagTypes: ['Products', 'Cart', 'Order'],
   endpoints: (builder) => ({}),
 });

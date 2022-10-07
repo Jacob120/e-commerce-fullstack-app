@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Quantity from '../../common/Quantity/Quantity';
 import {
   useDeleteCartItemMutation,
@@ -31,7 +31,7 @@ const CartPage = () => {
   } = useGetCartQuery();
   const [deleteCartItem] = useDeleteCartItemMutation();
   const [shippingValue, setShippingValue] = useState(0);
-
+  const [refresh, setRefresh] = useState(false);
   const data = items;
 
   const getTotal = () => {
@@ -48,6 +48,7 @@ const CartPage = () => {
   const handleRemoveFromCart = async (id) => {
     try {
       await deleteCartItem(id).unwrap();
+      setRefresh(true);
     } catch (err) {
       console.error(err);
     }
@@ -55,7 +56,8 @@ const CartPage = () => {
 
   useEffect(() => {
     dispatch(refetch);
-  }, [refetch, dispatch]);
+    setRefresh(false);
+  }, [refresh, dispatch]);
 
   if (isError) {
     console.log(error);

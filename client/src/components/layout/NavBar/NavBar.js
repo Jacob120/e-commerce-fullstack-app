@@ -11,17 +11,29 @@ import Button from 'react-bootstrap/Button';
 import { BsCart, BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import { selectAllCart } from '../../../redux/cartSlice';
+import { selectAllCart, useGetCartQuery } from '../../../redux/cartSlice';
 
 const NavBar = () => {
-  // const cart = useSelector(selectAllCart);
-  const cart = [];
+  const {
+    data: items,
+    isSuccess,
+    isLoading,
+    isFetching,
+    isError,
+    error,
+    refetch,
+  } = useGetCartQuery();
+
+  const cart = items;
+
   const getTotalQuantity = () => {
-    // let total = 0;
-    // cart.forEach((item) => {
-    //   total += item.quantity;
-    // });
-    // return total;
+    let total = 0;
+
+    cart &&
+      cart.forEach((item) => {
+        total += item.quantity;
+      });
+    return total;
   };
 
   return (

@@ -9,8 +9,7 @@ export const cartApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCart: builder.query({
       query: () => '/cart',
-
-      providesTags: (result, error, arg) => ['Cart'],
+      providesTags: ['Cart'],
     }),
     addCartItem: builder.mutation({
       query: (initialProduct) => ({

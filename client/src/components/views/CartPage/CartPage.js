@@ -18,6 +18,8 @@ import {
 } from '../../../redux/cartSlice';
 
 const CartPage = () => {
+  const dispatch = useDispatch();
+
   const {
     data: items,
     isSuccess,
@@ -25,11 +27,12 @@ const CartPage = () => {
     isFetching,
     isError,
     error,
+    refetch,
   } = useGetCartQuery();
   const [deleteCartItem] = useDeleteCartItemMutation();
+  const [shippingValue, setShippingValue] = useState(0);
 
   const data = items;
-  const [shippingValue, setShippingValue] = useState(0);
 
   const getTotal = () => {
     let totalQuantity = 0;
@@ -50,7 +53,9 @@ const CartPage = () => {
     }
   };
 
-  useEffect(() => {}, [isFetching]);
+  useEffect(() => {
+    dispatch(refetch);
+  }, [refetch, dispatch]);
 
   if (isError) {
     console.log(error);

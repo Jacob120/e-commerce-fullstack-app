@@ -31,7 +31,6 @@ const ProductPage = () => {
     isError,
     error,
   } = useGetProductsByIdQuery(productId);
-  console.log(productData);
 
   const [value, setValue] = useState(1);
   const [activePhoto, setActivePhoto] = useState('');
@@ -53,6 +52,7 @@ const ProductPage = () => {
       console.error(err);
     }
   };
+
   if (isError) {
     console.log(error);
   } else if (isLoading) {

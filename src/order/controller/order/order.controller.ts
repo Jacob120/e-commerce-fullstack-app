@@ -9,8 +9,8 @@ export class OrderController {
 
   @UseGuards(LocalAuthGuard)
   @Post()
-  async order(@Request() req): Promise<any> {
-    return this.orderService.order(req.user.username);
+  async addOrder(@Request() req): Promise<any> {
+    return this.orderService.addOrder(req.user.username);
   }
 
   @UseGuards(LocalAuthGuard)

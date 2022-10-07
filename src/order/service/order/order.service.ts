@@ -14,7 +14,7 @@ export class OrderService {
     private userRepository: Repository<Users>,
     private cartService: CartService,
   ) {}
-  async order(user: string): Promise<any> {
+  async addOrder(user: string): Promise<any> {
     //find user existing orders
     const usersOrder = await this.orderRepository.find({ relations: ['user'] });
     const userOrder = usersOrder.filter(

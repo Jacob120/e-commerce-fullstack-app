@@ -9,13 +9,8 @@ export const cartApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCart: builder.query({
       query: () => '/cart',
-      transformResponse: (responseData) => {
-        return cartAdapter.setAll(initialState, responseData);
-      },
-      providesTags: (result, error, arg) => [
-        { type: 'Cart', id: 'LIST' },
-        ...result.ids.map((id) => ({ type: 'Cart', id: 'LIST' })),
-      ],
+
+      providesTags: (result, error, arg) => ['Cart'],
     }),
     addCartItem: builder.mutation({
       query: (initialProduct) => ({
@@ -25,22 +20,24 @@ export const cartApiSlice = apiSlice.injectEndpoints({
           ...initialProduct,
         },
       }),
-      invalidatesTags: [{ type: 'Cart', id: 'LIST' }],
+      invalidatesTags: ['Cart'],
     }),
     updateCart: builder.mutation({
       query: (initialCart) => ({
         url: `/cart/${initialCart.id}`,
         method: 'PUT',
-        body: { quantity: initialCart.quantity },
+        body: {
+          quantity: initialCart.quantity >= 1 ? initialCart.quantity : 1,
+        },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: 'Cart', id: arg.id }],
+      invalidatesTags: ['Cart'],
     }),
     deleteCartItem: builder.mutation({
       query: (id) => ({
         url: `/cart/${id}`,
         method: 'DELETE',
         body: id,
-        invalidatesTags: [{ type: 'Cart', id: 'LIST' }],
+        invalidatesTags: ['Cart'],
       }),
     }),
   }),

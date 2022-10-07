@@ -38,7 +38,7 @@ dotenv.config();
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
+export class AppModule {
   configure(consumer: MiddlewareConsumer): void {
     consumer.apply(cors()).forRoutes({
       path: '*',

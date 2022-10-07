@@ -10,18 +10,23 @@ const Quantity = (props) => {
   const [updateCart, { isLoading, isFetching, isSuccess }] =
     useUpdateCartMutation();
   const [value, setValue] = useState(props.quantity || 1);
-
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     if (props.onClick) {
       props.onClick(value);
     }
+    setValue(value);
   }, [value, props, updateCart]);
 
   const handleDecrementQuantity = async (id) => {
     setValue(value > 1 && value - 1);
+    setRefresh(true);
+    console.log('1st', value);
+    console.log(refresh);
     if (id) {
       try {
-        console.log(id, value);
+        console.log('2nd', value);
+
         await updateCart({ id: id, quantity: value });
       } catch (err) {
         console.log(err);
@@ -30,18 +35,14 @@ const Quantity = (props) => {
   };
 
   const handleIncrementQuantity = async (id) => {
-    setValue(value + 1);
     if (id) {
       try {
-        console.log(id, value);
-        await updateCart({ id: id, quantity: value });
+        await updateCart({ id: id, quantity: value }).unwrap();
       } catch (err) {
         console.log(err);
       }
     }
   };
-
-  console.log(value);
 
   return (
     <span className={'d-flex justify-content-between ' + styles.root}>

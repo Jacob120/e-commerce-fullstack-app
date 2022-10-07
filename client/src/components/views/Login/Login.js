@@ -33,7 +33,7 @@ const Login = () => {
       body: JSON.stringify({ username: login, password }),
     };
     setStatus('loading');
-    fetch(`${API_URL}auth/login`, options)
+    fetch(`${API_URL}/auth/login`, options)
       .then((res) => {
         if (res.status === 201) {
           res.json().then((data) => {

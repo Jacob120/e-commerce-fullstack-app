@@ -9,6 +9,8 @@ import {
   Param,
   Put,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 import { CartEntity } from 'src/cart/cart.entity';
 import { CartService } from 'src/cart/service/cart/cart.service';
@@ -18,7 +20,7 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 export class CartController {
   constructor(private cartService: CartService) {}
 
-  // @UseGuards(LocalAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   async AddToCart(@Body() body, @Request() req): Promise<void> {
     const { productId, quantity, username, size } = body;
@@ -30,7 +32,7 @@ export class CartController {
     );
   }
 
-  // @UseGuards(LocalAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   async getItemsInCart(@Request() body, @Request() req): Promise<CartEntity[]> {
     const { username } = body;
@@ -48,7 +50,6 @@ export class CartController {
 
   @Delete(':id')
   async Delete(@Param() id: string, @Request() req): Promise<DeleteResult> {
-    console.log(id);
     return await this.cartService.delete(id);
   }
 }

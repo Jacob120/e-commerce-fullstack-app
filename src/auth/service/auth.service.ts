@@ -26,6 +26,7 @@ export class AuthService {
     const foundUser = await this.userRepository.findOne({
       where: { username },
     });
+
     if (foundUser) {
       if (await bcrypt.compare(password, foundUser.password)) {
         const { password, ...result } = foundUser;

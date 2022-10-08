@@ -10,12 +10,14 @@ export class OrderController {
   @UseGuards(LocalAuthGuard)
   @Post()
   async addOrder(@Request() req): Promise<any> {
+    console.log(req.user.username);
     return this.orderService.addOrder(req.user.username);
   }
 
   @UseGuards(LocalAuthGuard)
   @Get()
   async getOrders(@Request() req): Promise<OrderEntity[]> {
+    console.log(req.user.username);
     return await this.orderService.getOrders(req.user.username);
   }
 }

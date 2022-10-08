@@ -20,19 +20,20 @@ import {
 const CartPage = () => {
   const dispatch = useDispatch();
 
+  const [deleteCartItem] = useDeleteCartItemMutation();
   const {
     data: items,
     isSuccess,
     isLoading,
-    isFetching,
     isError,
     error,
     refetch,
   } = useGetCartQuery();
-  const [deleteCartItem] = useDeleteCartItemMutation();
+
+  const data = items;
+
   const [shippingValue, setShippingValue] = useState(0);
   const [refresh, setRefresh] = useState(false);
-  const data = items;
 
   const getTotal = () => {
     let totalQuantity = 0;
@@ -54,10 +55,14 @@ const CartPage = () => {
     }
   };
 
+  const handleSubmit = () => {
+    console.log('test');
+  };
+
   useEffect(() => {
     dispatch(refetch);
     setRefresh(false);
-  }, [refresh, dispatch]);
+  }, [refresh, refetch, dispatch]);
 
   if (isError) {
     console.log(error);
@@ -142,6 +147,7 @@ const CartPage = () => {
                   type="radio"
                   id={`1`}
                   onChange={() => setShippingValue(0)}
+                  defaultChecked={true}
                 />
                 <Form.Check
                   inline
@@ -166,9 +172,11 @@ const CartPage = () => {
               </p>
               <Link to="/checkout">
                 <Button
+                  type="submit"
                   variant="outline-secondary"
                   size="lg"
                   className="mx-3 mb-3 "
+                  onClick={handleSubmit}
                 >
                   Proceed to checkout
                 </Button>

@@ -8,8 +8,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectAllCart, useGetCartQuery } from '../../../redux/cartSlice';
+import { useGetCartQuery } from '../../../redux/cartSlice';
 
 const CheckoutPage = () => {
   const {
@@ -20,7 +19,7 @@ const CheckoutPage = () => {
     error,
   } = useGetCartQuery();
   const cart = items;
-
+  console.log(cart);
   const getTotal = () => {
     let totalQuantity = 0;
     let totalPrice = 0;

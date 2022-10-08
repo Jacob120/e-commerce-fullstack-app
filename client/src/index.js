@@ -14,7 +14,7 @@ import { orderApiSlice } from './redux/orderSlice';
 
 store.dispatch(extendedApiSlice.endpoints.getProducts.initiate());
 store.dispatch(cartApiSlice.endpoints.getCart.initiate());
-store.dispatch(orderApiSlice.endpoints.getOrder.initiate());
+// store.dispatch(orderApiSlice.endpoints.getOrder.initiate());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

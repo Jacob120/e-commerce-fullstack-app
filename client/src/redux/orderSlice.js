@@ -12,10 +12,10 @@ export const orderApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Order'],
     }),
     addOrder: builder.mutation({
-      query: (initialOrder) => ({
+      query: (username) => ({
         url: '/order',
         method: 'POST',
-        body: { ...initialOrder },
+        body: { username },
       }),
       invalidatesTags: ['Order'],
     }),

@@ -7,6 +7,7 @@ const Logout = () => {
   useEffect(() => {
     sessionStorage.clear();
     navigate('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return null;

@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Request, UseGuards } from '@nestjs/common';
-import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { OrderEntity } from 'src/order/order.entity';
 import { OrderService } from 'src/order/service/order/order.service';
 
@@ -7,17 +7,15 @@ import { OrderService } from 'src/order/service/order/order.service';
 export class OrderController {
   constructor(private orderService: OrderService) {}
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   async addOrder(@Request() req): Promise<any> {
-    console.log(req.user.username);
     return this.orderService.addOrder(req.user.username);
   }
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getOrders(@Request() req): Promise<OrderEntity[]> {
-    console.log(req.user.username);
-    return await this.orderService.getOrders(req.user.username);
+    return await this.orderService.getOrders(req.user.username); //req.user.username
   }
 }

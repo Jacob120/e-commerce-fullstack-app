@@ -31,7 +31,7 @@ const CartPage = () => {
   } = useGetCartQuery();
 
   const data = items;
-
+  console.log(data);
   const [shippingValue, setShippingValue] = useState(0);
   const [refresh, setRefresh] = useState(false);
 

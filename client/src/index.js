@@ -10,7 +10,6 @@ import { cartApiSlice } from './redux/cartSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/settings.scss';
 import './styles/global.scss';
-import { orderApiSlice } from './redux/orderSlice';
 
 store.dispatch(extendedApiSlice.endpoints.getProducts.initiate());
 store.dispatch(cartApiSlice.endpoints.getCart.initiate());

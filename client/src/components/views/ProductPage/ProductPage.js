@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Spinner from 'react-bootstrap/Spinner';
-import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
   BsCartPlus,
@@ -23,6 +22,7 @@ import { useAddCartItemMutation } from '../../../redux/cartSlice';
 const ProductPage = () => {
   const { productId } = useParams();
   const [addCartItem] = useAddCartItemMutation();
+  const username = sessionStorage.getItem('username');
 
   const {
     data: productData,
@@ -35,11 +35,13 @@ const ProductPage = () => {
   const [value, setValue] = useState(1);
   const [activePhoto, setActivePhoto] = useState('');
   const [activeSize, setActiveSize] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     setActivePhoto(productData && productData.gallery[0]);
     setActiveSize(productData && productData.size[0]);
-  }, [productData]);
+    if (username) setDisabled(false);
+  }, [productData, username]);
 
   const changeValue = (value) => {
     setValue(value);
@@ -47,7 +49,12 @@ const ProductPage = () => {
 
   const handleAddToCart = async () => {
     try {
-      await addCartItem({ ...productData, size: activeSize, quantity: value });
+      await addCartItem({
+        ...productData,
+        size: activeSize,
+        quantity: value,
+        username,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -142,11 +149,13 @@ const ProductPage = () => {
                   </div>
                 ))}
               </div>
+              {!username && <p className="mx-3">Please log in before buying</p>}
               <Button
                 variant="outline-secondary"
                 size="md"
                 className="d-flex align-items-center mx-3"
                 onClick={handleAddToCart}
+                disabled={disabled}
               >
                 <BsCartPlus className="mx-1 " />
                 ADD TO CART

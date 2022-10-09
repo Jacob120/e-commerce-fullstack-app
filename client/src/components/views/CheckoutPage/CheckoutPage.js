@@ -7,8 +7,8 @@ import Form from 'react-bootstrap/Form';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
-import { Link } from 'react-router-dom';
 import { useGetCartQuery } from '../../../redux/cartSlice';
+import { useAddOrderMutation } from '../../../redux/orderSlice';
 
 const CheckoutPage = () => {
   const {
@@ -19,7 +19,9 @@ const CheckoutPage = () => {
     error,
   } = useGetCartQuery();
   const cart = items;
-  console.log(cart);
+
+  const [addOrder] = useAddOrderMutation();
+
   const getTotal = () => {
     let totalQuantity = 0;
     let totalPrice = 0;
@@ -29,6 +31,14 @@ const CheckoutPage = () => {
         totalPrice += cart.item.price * cart.quantity;
       });
     return { totalPrice, totalQuantity };
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await addOrder(sessionStorage.getItem('username'));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   if (isError) {
@@ -51,7 +61,7 @@ const CheckoutPage = () => {
           </Breadcrumb>
           <h5>Billing Details</h5>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Row>
               <Col xs={12} md={12} lg={9}>
                 <Row className="mb-3">

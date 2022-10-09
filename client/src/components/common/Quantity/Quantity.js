@@ -36,6 +36,7 @@ const Quantity = (props) => {
 
     setRefresh(false);
     if (refresh) update();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh, refetch]);
 
   return (

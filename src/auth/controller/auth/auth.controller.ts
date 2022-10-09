@@ -6,13 +6,12 @@ import {
   Body,
   Get,
 } from '@nestjs/common';
-// import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-// import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 import { AuthService } from 'src/auth/service/auth.service';
-import { Users } from 'src/auth/user.entity';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { Users } from 'src/auth/user.entity';
+import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 
 @Controller('api/auth/')
 export class AuthController {
@@ -31,7 +30,7 @@ export class AuthController {
     return this.usersService.signup(user);
   }
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
     return this.usersService.login(req.user);

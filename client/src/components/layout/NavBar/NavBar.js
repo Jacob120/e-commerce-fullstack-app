@@ -10,19 +10,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { BsCart, BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectAllCart, useGetCartQuery } from '../../../redux/cartSlice';
+import { useGetCartQuery } from '../../../redux/cartSlice';
 
 const NavBar = () => {
-  const {
-    data: items,
-    isSuccess,
-    isLoading,
-    isFetching,
-    isError,
-    error,
-    refetch,
-  } = useGetCartQuery();
+  const { data: items } = useGetCartQuery();
 
   const cart = items;
 

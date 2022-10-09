@@ -4,13 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { BsCartPlus } from 'react-icons/bs';
 import { BiGlassesAlt } from 'react-icons/bi';
 import StarsRating from '../StarsRating/StarsRating';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { getProductById } from '../../../redux/productsRedux';
 
 const ProductBox = ({
   id,

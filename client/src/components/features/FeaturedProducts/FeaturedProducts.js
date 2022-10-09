@@ -8,15 +8,10 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import {
-  getAllProducts,
-  getMenProducts,
-  getWomenProducts,
-} from '../../../redux/productsRedux';
+import { getMenProducts, getWomenProducts } from '../../../redux/productsRedux';
 import { useGetProductsQuery } from '../../../redux/productsSlice';
 
 const FeaturedProducts = () => {
-  const allProducts = useSelector(getAllProducts);
   const menProducts = useSelector(getMenProducts);
   const womenProducts = useSelector(getWomenProducts);
 

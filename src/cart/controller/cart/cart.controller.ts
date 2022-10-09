@@ -20,10 +20,11 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 export class CartController {
   constructor(private cartService: CartService) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   async AddToCart(@Body() body, @Request() req): Promise<void> {
     const { productId, quantity, username, size } = body;
+
     return await this.cartService.addToCart(
       productId,
       quantity,
@@ -32,13 +33,16 @@ export class CartController {
     );
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async getItemsInCart(@Request() body, @Request() req): Promise<CartEntity[]> {
-    const { username } = body;
-    return await this.cartService.getItemsInCart('JohnDoe');
+    console.log(body.username);
+    console.log(req.user);
+    // const { username } = body;
+    return await this.cartService.getItemsInCart(req.user.username);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async Update(
     @Param() id: string,
@@ -48,6 +52,7 @@ export class CartController {
     return await this.cartService.update(id, cart);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async Delete(@Param() id: string, @Request() req): Promise<DeleteResult> {
     return await this.cartService.delete(id);

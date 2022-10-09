@@ -24,21 +24,20 @@ export class ProductsController {
     return await this.productsService.getAll();
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  async GetOne(
+    @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
+  ): Promise<ProductEntity> {
+    return await this.productsService.getOne(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Post()
   async Create(
     @Request() req,
     @Body() product: ProductEntity,
   ): Promise<ProductEntity> {
     return await this.productsService.create(product);
-  }
-
-  // @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  async GetOne(
-    @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
-  ): Promise<ProductEntity> {
-    return await this.productsService.getOne(id);
   }
 
   @UseGuards(JwtAuthGuard)

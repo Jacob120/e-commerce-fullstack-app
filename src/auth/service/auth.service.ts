@@ -16,7 +16,7 @@ export class AuthService {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(user.password, salt);
     user.password = hash;
-
+    user.refreshToken = process.env.REFRESH_TOKEN_SECRET;
     user.role = 'user';
     return await this.userRepository.save(user);
   }

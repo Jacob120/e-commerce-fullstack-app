@@ -3,11 +3,11 @@ import styles from './TopBar.module.scss';
 import Container from 'react-bootstrap/Container';
 import { BsPerson, BsTelephone, BsPersonPlus } from 'react-icons/bs';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const TopBar = () => {
-  useEffect(() => {
-    sessionStorage.getItem('username');
-  }, []);
+  let location = useLocation();
+  useEffect(() => {}, [location]);
 
   return (
     <Container>

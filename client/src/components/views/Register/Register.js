@@ -40,8 +40,8 @@ const Register = () => {
     <Form className="col-12 col-sm-3 mx-auto my-5 pb-5" onSubmit={handleSubmit}>
       <h1 className="my-4">Sign up</h1>
       <p className="mb-3">
-        For demo purpose you can just sign in with login: JohnDoe and password:
-        test
+        For demo purpose you can just sign in with login: <b>JohnDoe</b> and
+        password: <b>test</b>.
       </p>
       {status === 'success' && (
         <Alert variant="success">
@@ -84,6 +84,7 @@ const Register = () => {
           value={login}
           onChange={(e) => setLogin(e.target.value)}
           placeholder="Enter login"
+          disabled
         />
       </Form.Group>
 
@@ -94,10 +95,11 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          disabled
         />
       </Form.Group>
 
-      <Button variant="outline-secondary" size="lg" type="submit">
+      <Button variant="outline-secondary" size="lg" type="submit" disabled>
         Submit
       </Button>
     </Form>

@@ -25,6 +25,9 @@ export class Users {
   @Column()
   role: string;
 
+  @Column()
+  refreshToken?: string;
+
   @CreateDateColumn()
   createdAt: string;
 

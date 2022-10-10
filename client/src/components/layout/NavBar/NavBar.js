@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './NavBar.module.scss';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,16 +11,22 @@ import Button from 'react-bootstrap/Button';
 import { BsCart, BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useGetCartQuery } from '../../../redux/cartSlice';
+import { useLocation } from 'react-router-dom';
 
 const NavBar = () => {
-  const { data: items } = useGetCartQuery();
+  const user = sessionStorage.getItem('username');
+  let location = useLocation();
 
+  useEffect(() => {}, [location]);
+
+  const { data: items } = useGetCartQuery();
   const cart = items;
 
   const getTotalQuantity = () => {
     let total = 0;
 
-    cart &&
+    user &&
+      cart &&
       cart.forEach((item) => {
         total += item.quantity;
       });

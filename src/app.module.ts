@@ -7,10 +7,12 @@ import { CartModule } from './cart/cart.module';
 import { OrderModule } from './order/order.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 
 import * as dotenv from 'dotenv';
 import * as cors from 'cors';
+import * as Joi from 'joi';
 // Load env file
 dotenv.config();
 
@@ -32,6 +34,14 @@ dotenv.config();
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client', 'build'),
+    }),
+    ConfigModule.forRoot({
+      validationSchema: Joi.object({
+        ACCESS_TOKEN_SECRET: Joi.string().required(),
+        ACCESS_TOKEN_EXPIRATION: Joi.string().required(),
+        REFRESH_TOKEN_SECRET: Joi.string().required(),
+        REFRESH_TOKEN_EXPIRATION: Joi.string().required(),
+      }),
     }),
   ],
   controllers: [AppController],

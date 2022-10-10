@@ -25,6 +25,7 @@ export class CartService {
       relations: ['item', 'user'],
     });
     const product = await this.productsService.getOne(productId);
+
     const authUser = await this.userRepository.findOneBy({ username: user });
 
     //Confirm the product exists.
@@ -33,7 +34,7 @@ export class CartService {
       const cart = cartItems.filter(
         (item) => item.item.id === productId && item.user.username === user,
       );
-      if (cart.length < 1) {
+      if (cart.length < 1 || size !== cart[0].size) {
         const newItem = this.cartRepository.create({
           total: product.price * quantity,
           quantity,
@@ -41,7 +42,6 @@ export class CartService {
         newItem.user = authUser;
         newItem.item = product;
         newItem.size = size;
-
         return await this.cartRepository.save(newItem);
       } else {
         //Update the item quantity

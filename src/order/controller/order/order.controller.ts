@@ -1,5 +1,12 @@
-import { Controller, Post, Get, Request, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import {
+  Controller,
+  Post,
+  Get,
+  Request,
+  UseGuards,
+  Body,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { OrderEntity } from 'src/order/order.entity';
 import { OrderService } from 'src/order/service/order/order.service';
 
@@ -7,15 +14,37 @@ import { OrderService } from 'src/order/service/order/order.service';
 export class OrderController {
   constructor(private orderService: OrderService) {}
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard('jwt'))
   @Post()
-  async addOrder(@Request() req): Promise<any> {
-    return this.orderService.addOrder(req.user.username);
+  async addOrder(@Body() body, @Request() req): Promise<any> {
+    const {
+      firstName,
+      lastName,
+      address,
+      city,
+      country,
+      zipCode,
+      orderNotes,
+      username,
+      shippingCost,
+    } = body;
+
+    return this.orderService.addOrder(
+      firstName,
+      lastName,
+      address,
+      city,
+      country,
+      zipCode,
+      orderNotes,
+      username,
+      shippingCost,
+    );
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async getOrders(@Request() req): Promise<OrderEntity[]> {
-    return await this.orderService.getOrders(req.user.username); //req.user.username
+    return await this.orderService.getOrders(req.user.username);
   }
 }

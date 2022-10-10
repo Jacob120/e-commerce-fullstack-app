@@ -16,7 +16,7 @@ export class OrderController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post()
-  async addOrder(@Body() body, @Request() req): Promise<any> {
+  async addOrder(@Body() body): Promise<any> {
     const {
       firstName,
       lastName,

@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { BsTrash } from 'react-icons/bs';
@@ -13,7 +12,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Quantity from '../../common/Quantity/Quantity';
 import {
-  useAddCartItemMutation,
   useDeleteCartItemMutation,
   useGetCartQuery,
 } from '../../../redux/cartSlice';
@@ -23,7 +21,6 @@ const CartPage = () => {
   const user = sessionStorage.getItem('username');
 
   const [deleteCartItem] = useDeleteCartItemMutation();
-  const [addCartItem] = useAddCartItemMutation();
 
   const { data: items, isLoading, isError, error, refetch } = useGetCartQuery();
   const data = items;

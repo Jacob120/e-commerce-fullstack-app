@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Quantity from '../../common/Quantity/Quantity';
 import {
+  useAddCartItemMutation,
   useDeleteCartItemMutation,
   useGetCartQuery,
 } from '../../../redux/cartSlice';
@@ -22,11 +23,11 @@ const CartPage = () => {
   const user = sessionStorage.getItem('username');
 
   const [deleteCartItem] = useDeleteCartItemMutation();
-  const { data: items, isLoading, isError, error, refetch } = useGetCartQuery();
+  const [addCartItem] = useAddCartItemMutation();
 
+  const { data: items, isLoading, isError, error, refetch } = useGetCartQuery();
   const data = items;
 
-  const [shippingValue, setShippingValue] = useState(0);
   const [refresh, setRefresh] = useState(false);
 
   const getTotal = () => {
@@ -48,10 +49,6 @@ const CartPage = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const handleSubmit = () => {
-    console.log('test');
   };
 
   useEffect(() => {
@@ -127,49 +124,17 @@ const CartPage = () => {
           </Col>
           <Col xs={12} md={12} lg={3} className={styles.right_box}>
             <p className={'p-3 ' + styles.summary_title}>Cart Total</p>
-            <p className={'p-3 ' + styles.summary_title}>
-              Subtotal: ${getTotal().totalPrice} ({getTotal().totalQuantity}{' '}
-              items)
-            </p>
-            <p className="px-3 mb-0">Shipping</p>
-            <Form className={'p-3 ' + styles.shipping_form}>
-              <Form.Check
-                inline
-                label="Free Shipping $0.00"
-                name="group1"
-                type="radio"
-                id={`1`}
-                onChange={() => setShippingValue(0)}
-                defaultChecked={true}
-              />
-              <Form.Check
-                inline
-                label="Standard $10.00"
-                name="group1"
-                type="radio"
-                id={`2`}
-                value={10}
-                onChange={() => setShippingValue(10)}
-              />
-              <Form.Check
-                inline
-                label="Express $20.00"
-                name="group1"
-                type="radio"
-                id={`3`}
-                onChange={() => setShippingValue(20)}
-              />
-            </Form>
-            <p className="mt-3 px-3">
-              Total price: $ ${getTotal().totalPrice + shippingValue}
-            </p>
+            <h5 className={'p-3 mb-3 ' + styles.summary_title}>
+              Total: ${getTotal().totalPrice} ({getTotal().totalQuantity} items)
+            </h5>
+
             <Link to="/checkout">
               <Button
                 type="submit"
                 variant="outline-secondary"
                 size="lg"
                 className="mx-3 mb-3 "
-                onClick={handleSubmit}
+                disabled={user ? false : true}
               >
                 Proceed to checkout
               </Button>

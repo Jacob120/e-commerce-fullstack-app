@@ -1,7 +1,9 @@
 import { createSelector, createEntityAdapter } from '@reduxjs/toolkit';
 import { apiSlice } from './apiSlice';
 
-const orderAdapter = createEntityAdapter();
+const orderAdapter = createEntityAdapter({
+  sortComparer: (a, b) => b.createdDate.localeCompare(a.createdDate),
+});
 
 const initialState = orderAdapter.getInitialState();
 
@@ -9,13 +11,16 @@ export const orderApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getOrder: builder.query({
       query: () => '/order',
+      transformResponse: (responseData) => {
+        return orderAdapter.setAll(initialState, responseData);
+      },
       providesTags: ['Order'],
     }),
     addOrder: builder.mutation({
-      query: (username) => ({
+      query: (initialOrder) => ({
         url: '/order',
         method: 'POST',
-        body: { username },
+        body: { ...initialOrder },
       }),
       invalidatesTags: ['Order'],
     }),

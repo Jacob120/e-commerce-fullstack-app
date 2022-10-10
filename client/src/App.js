@@ -10,6 +10,7 @@ import Login from './components/views/Login/Login';
 import Logout from './components/views/Logout/Logout';
 import Register from './components/views/Register/Register';
 import { NotFound } from './components/views/NotFound/NotFound';
+import OrderSummary from './components/views/OrderSummary/OrderSummary';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/summary" element={<OrderSummary />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />

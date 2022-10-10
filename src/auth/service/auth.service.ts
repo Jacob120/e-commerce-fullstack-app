@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from '../user.entity';
@@ -16,14 +16,12 @@ export class AuthService {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(user.password, salt);
     user.password = hash;
-    user.refreshToken = process.env.REFRESH_TOKEN_SECRET;
     user.role = 'user';
     return await this.userRepository.save(user);
   }
 
   async validateUser(username: string, password: string): Promise<any> {
     const foundUser = await this.userRepository.findOneBy({ username });
-    console.log('foundUser:', foundUser);
 
     if (foundUser) {
       if (await bcrypt.compare(password, foundUser.password)) {

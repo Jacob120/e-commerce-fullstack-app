@@ -21,7 +21,7 @@ const Register = () => {
       },
       body: JSON.stringify({ username: login, password: password }),
     };
-    console.log(options);
+
     setStatus('loading');
     fetch(`${API_URL}/auth/signup`, options).then((res) => {
       if (res.status === 201) {

@@ -5,26 +5,20 @@ import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../../../redux/authApiSlice';
-import { setCredentials } from '../../../redux/authSlice';
 
 const Login = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
-  const [login, { isLoading, isSuccess, isError }] = useLoginMutation();
 
-  console.log('username', username);
-  console.log('psw', password);
+  const [login, { isLoading, isSuccess, isError }] = useLoginMutation();
   const saveJwtToken = (token, username) => {
     sessionStorage.setItem('accessToken', token);
     sessionStorage.setItem('username', username);
   };
-  console.log(sessionStorage.getItem('accessToken'));
 
   useEffect(() => {
     setErrMsg('');
@@ -36,10 +30,10 @@ const Login = () => {
     try {
       const userData = await login({ username, password }).unwrap();
       saveJwtToken(userData.access_token, userData.username);
-      console.log('userData:', userData);
-      dispatch(setCredentials({ ...userData, username }));
+
       setUsername('');
       setPassword('');
+
       setTimeout(() => {
         navigate('/');
       }, 3000);

@@ -22,14 +22,7 @@ const CartPage = () => {
   const user = sessionStorage.getItem('username');
 
   const [deleteCartItem] = useDeleteCartItemMutation();
-  const {
-    data: items,
-    isSuccess,
-    isLoading,
-    isError,
-    error,
-    refetch,
-  } = useGetCartQuery();
+  const { data: items, isLoading, isError, error, refetch } = useGetCartQuery();
 
   const data = items;
 

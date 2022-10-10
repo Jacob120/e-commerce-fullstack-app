@@ -8,7 +8,6 @@ import {
 } from '@nestjs/common';
 import { AuthService } from 'src/auth/service/auth.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Users } from 'src/auth/user.entity';
 import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';

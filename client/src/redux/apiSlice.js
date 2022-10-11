@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_URL } from '../config';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3000/api',
+  baseUrl: { API_URL },
   credentials: 'include',
   prepareHeaders: (headers) => {
     const token = sessionStorage.getItem('accessToken');

@@ -76,7 +76,7 @@ const ProductPage = () => {
           <Breadcrumb.Item active>Product</Breadcrumb.Item>
         </Breadcrumb>
         {isSuccess && productData && (
-          <Row className={'pb-3 ' + styles.root}>
+          <Row className={'mb-5 ' + styles.root}>
             <Col xs={4} md={4} lg={2} className="flex-column">
               {productData.gallery &&
                 productData.gallery.map((item) => (

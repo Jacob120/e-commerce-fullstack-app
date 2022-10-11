@@ -44,7 +44,7 @@ const BannerGroup = () => {
             </Link>
           </Col>
         </Row>
-        <Row className="d-sm-none d-md-none d-lg-block">
+        <Row className="d-none d-lg-block">
           <Col xs={12} className={styles.banner_wrapper}>
             <Link to="/">
               <div className={styles.bottom_banner_text}>

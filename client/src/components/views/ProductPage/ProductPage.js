@@ -149,7 +149,12 @@ const ProductPage = () => {
                   </div>
                 ))}
               </div>
-              {!username && <p className="mx-3">Please log in before buying</p>}
+              {!username && (
+                <p className={'mx-3 ' + styles.login_message}>
+                  You have to log in before buying. Please head to the login
+                  page on top.
+                </p>
+              )}
               <Button
                 variant="outline-secondary"
                 size="md"

@@ -1,7 +1,7 @@
 
 ## Description
 
-E-commerce fullstack applicaiton. Live demo on heroku [https://shoe-jk.herokuapp.com/]
+E-commerce fullstack applicaiton. Live demo on heroku [https://shoe-jk.herokuapp.com/](https://shoe-jk.herokuapp.com/)
 
 ## Installation
 

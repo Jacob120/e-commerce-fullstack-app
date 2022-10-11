@@ -51,17 +51,11 @@ const NavBar = () => {
         >
           <Nav className="px-5 my-2 my-lg-0">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/">Categories</Nav.Link>
+            <Nav.Link href="/">Shop</Nav.Link>
             <NavDropdown title="Categories" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.1">Men's</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Women's</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">All</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Row className="justify-content-end">

@@ -12,9 +12,6 @@ import { getMenProducts, getWomenProducts } from '../../../redux/productsRedux';
 import { useGetProductsQuery } from '../../../redux/productsSlice';
 
 const FeaturedProducts = () => {
-  const menProducts = useSelector(getMenProducts);
-  const womenProducts = useSelector(getWomenProducts);
-
   const {
     data: products,
     isLoading,
@@ -23,7 +20,12 @@ const FeaturedProducts = () => {
     error,
   } = useGetProductsQuery();
 
-  const data = products;
+  const allProducts = products;
+
+  const menProducts =
+    allProducts && allProducts.filter((item) => item.type === 'Men');
+  const womenProducts =
+    allProducts && allProducts.filter((item) => item.type === 'Women');
 
   if (isError) {
     console.log(error);
@@ -49,7 +51,7 @@ const FeaturedProducts = () => {
               <Tab eventKey="all" title="ALL">
                 <Row className="g-2 ">
                   {isSuccess &&
-                    data.map((product) => (
+                    allProducts.map((product) => (
                       <Col xs={12} md={6} lg={3} key={product.id}>
                         <ProductBox {...product} />
                       </Col>

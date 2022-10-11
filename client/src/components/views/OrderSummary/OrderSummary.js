@@ -9,7 +9,7 @@ const OrderSummary = () => {
   const { data: orders, isLoading, isError, error } = useGetOrderQuery();
   const userOrder = useSelector((state) => selectAllOrder(state));
   const data = userOrder ? userOrder[0] : '';
-  console.log(data);
+
   if (isError) {
     console.log(error);
   } else if (isLoading) {

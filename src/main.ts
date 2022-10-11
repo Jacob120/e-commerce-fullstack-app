@@ -10,6 +10,6 @@ async function bootstrap() {
     allowedHeaders:
       'Content-Type, Authorization, Access-Control-Allow-Origin, Access-Control-Allow-Credentials',
   });
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

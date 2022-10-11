@@ -7,8 +7,6 @@ import Container from 'react-bootstrap/Container';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Spinner } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { getMenProducts, getWomenProducts } from '../../../redux/productsRedux';
 import { useGetProductsQuery } from '../../../redux/productsSlice';
 
 const FeaturedProducts = () => {
@@ -24,6 +22,7 @@ const FeaturedProducts = () => {
 
   const menProducts =
     allProducts && allProducts.filter((item) => item.type === 'Men');
+
   const womenProducts =
     allProducts && allProducts.filter((item) => item.type === 'Women');
 

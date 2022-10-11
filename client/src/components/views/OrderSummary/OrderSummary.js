@@ -34,7 +34,7 @@ const OrderSummary = () => {
             {data.city}, {data.country}, {data.zipCode}
           </p>
           {data.orderNotes && <p>Order notes: {data.orderNotes}</p>}
-          <p>Shipping cost: {data.shippingCost} </p>
+          <p>Shipping cost: ${data.shippingCost} </p>
           <h6>Subtotal: ${data.subTotal}</h6>
           <h5 className="my-3">
             Total cost: ${data.subTotal + data.shippingCost}

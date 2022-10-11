@@ -53,11 +53,11 @@ export class ProductEntity {
   @Column()
   starsRating: number;
 
-  @CreateDateColumn()
-  createdAt: string;
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
 
-  @UpdateDateColumn()
-  updatedAt: string;
+  @UpdateDateColumn({ type: 'timestamp' })
+  updatedAt: Date;
 
   @OneToMany((type) => CartEntity, (cart) => cart.id)
   @JoinColumn()

@@ -14,6 +14,9 @@ import { UpdateResult, DeleteResult } from 'typeorm';
 import { ProductEntity } from 'src/product/product.entity';
 import { ProductsService } from 'src/product/service/product/product.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { CreateProductDTO } from 'src/product/dto/create-product.dto';
+import { ExternalProductDTO } from 'src/product/dto/external-product.dto';
+import { dateToArray } from 'src/shared/data.helper';
 
 @Controller('api/products')
 export class ProductsController {
@@ -33,11 +36,9 @@ export class ProductsController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  async Create(
-    @Request() req,
-    @Body() product: ProductEntity,
-  ): Promise<ProductEntity> {
-    return await this.productsService.create(product);
+  async Create(@Body() item: CreateProductDTO): Promise<ExternalProductDTO> {
+    const product = await this.productsService.create(item);
+    return this.mapProductToExternal(product);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -54,5 +55,13 @@ export class ProductsController {
   @Delete(':id')
   async Delete(@Param() id: string, @Request() req): Promise<DeleteResult> {
     return await this.productsService.delete(id, req.user);
+  }
+
+  mapProductToExternal(product: ProductEntity): ExternalProductDTO {
+    return {
+      ...product,
+      createdAt: dateToArray(product.createdAt),
+      updatedAt: dateToArray(product.updatedAt),
+    };
   }
 }

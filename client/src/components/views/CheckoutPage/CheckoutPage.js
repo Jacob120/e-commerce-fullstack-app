@@ -192,6 +192,7 @@ const CheckoutPage = () => {
                       minLength: 2,
                       maxLength: 20,
                     })}
+                    type="text"
                     onChange={(e) => setZipCode(e.target.value)}
                   />
                   {errors.zipCode && (
